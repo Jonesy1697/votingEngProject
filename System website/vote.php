@@ -10,9 +10,12 @@
 			FROM `candidate`
 			where constituency_ID = 'Portsmouth south';";
 	
+	
 	// Runs query and saves the result
 	$result = mysqli_query($con, $sql); 
-
+			
+	$num_rows = (int)mysqli_num_rows($result);
+	
 	// Validates entered username and password
 	$user = $_GET['voterID'];
 	$pass = $_GET['password'];
@@ -59,9 +62,9 @@
 	<body>
 	
 		<main>	
-				
+		
 			<form id="form1" name="form1" method="get" action="updateDB.php">
-				<select name = "select[ ]">
+				<select name = "select[ ]" size = <?php echo "$num_rows"?>>
 				<!--Creates a dropdown menu-->
 					<?php while($row1 = mysqli_fetch_array($result)):;?>
 					<!--Populates the dropdown menu with countries which are in the final-->
