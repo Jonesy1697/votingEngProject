@@ -8,7 +8,8 @@
 		
 	$sql = "SELECT CONCAT_WS('', `party_Id` ,': ', `fname`, ' ', `lname`) AS `whole_name`
 			FROM `candidate`
-			where constituency_ID = 'Portsmouth south';";
+			where constituency_ID = 'Portsmouth south'
+            ORDER BY lname ASC;";
 	
 	
 	// Runs query and saves the result
@@ -54,10 +55,13 @@
 <html>
 		
 	<header>
-		<img class = "resize" src="images/govuk.png" alt="Government Logo">
-		<button id = "helpButton" type="button">Help</button>
-        <div class="clear"></div>
-	</header>	
+			<img class = "resize" src="images/govuk.png" alt="Government Logo">
+            <button id = "helpButton" type="button">Help</button>
+            <div class="clear"></div>
+		</header>
+		
+        <div id = "spacer">
+        </div>	
 	
 	<body>
 	
@@ -72,7 +76,7 @@
 					<?php endwhile?>
 				</select>
 				<br><br><br>
-				<input type="submit" value="Back" class = "fsSubmitButton"/>
+				<input type="submit" value="Submit" class = "fsSubmitButton"/>
 			</form>
 		</main>
 		
