@@ -17,6 +17,13 @@
 			
 	$num_rows = (int)mysqli_num_rows($result);
 	
+	$sql = "SELECT `Id`
+			FROM `candidate`
+			where constituency_ID = 'Portsmouth south'
+            ORDER BY lname ASC;";
+	
+	$Ids = mysqli_query($con, $sql); 
+	
 	// Validates entered username and password
 	$user = $_GET['voterID'];
 	$pass = $_GET['password'];
@@ -35,6 +42,8 @@
 	$DOB = mysqli_query($con, $sql) or die("conection failed" . $con->conect_error);
 	$DOB = mysqli_fetch_row($DOB);
 	$DOB = $password[0];
+	
+	$count = 0;
 	
 	// Searches wheteher the user has voted yet
 /* 	$sql = "SELECT voted FROM people WHERE name = '$user'";
@@ -68,16 +77,20 @@
 		<main>	
 		
 			<form id="form1" name="form1" method="get" action="updateDB.php">
-				<select name = "select[ ]" size = <?php echo "$num_rows"?>>
+				<select name = "select" size = <?php echo "$num_rows"?>>
 				<!--Creates a dropdown menu-->
-					<?php while($row1 = mysqli_fetch_array($result)):;?>
-					<!--Populates the dropdown menu with countries which are in the final-->
-					<option> <?php echo $row1[0];?></option>
-					<?php endwhile?>
+					<?php while($candidate = mysqli_fetch_array($result) and $Id = mysqli_fetch_array($Ids)):;?>
+						<!--Populates the dropdown menu with countries which are in the final-->
+						<option value = <?php echo $Id[0]?>> <?php echo $candidate[0];?></option>
+						<?php
+						$count++;
+						endwhile
+					?>
 				</select>
 				<br><br><br>
 				<input type="submit" value="Submit" class = "fsSubmitButton"/>
 			</form>
+			
 		</main>
 		
 	</body>
