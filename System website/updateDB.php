@@ -15,8 +15,8 @@
 	// Runs query and saves the result
 	$rows = mysqli_query($con, $sql); 	
 	$rows = mysqli_fetch_row($rows);
-	
-	if ($rows[0] === 0){
+		
+	if ($rows[0] === "0"){
 	
 	$sql = "INSERT INTO `vote`(`Id`, `election_ID`, `candidate_ID`) VALUES ($user, 1, $values)";
 	

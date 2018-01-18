@@ -104,7 +104,7 @@
 	// If the details are correct but they have voted, redirect to the already voted page
 	}/* elseif ($password === $pass and $voted == 1){
 		
-		header("Location: http://localhost/euroCalc/alreadyVoted.html");
+		header("Location: http://localhost/votingSystem/updateDB.html");
 		
 	} */
 	// Otherwise, the login is incorrect
