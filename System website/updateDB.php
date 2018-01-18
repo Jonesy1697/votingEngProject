@@ -23,9 +23,9 @@
 	$con->query($sql);
 	
 	$sql = "SELECT CONCAT_WS('', candidate.`party_Id` ,': ', candidate.`fname`, ' ', candidate.`lname`) AS `whole_name`
-			FROM  `vote`
-            join candidate
-			where constituency_ID = 'Portsmouth south' and vote.Id = $user";
+			FROM candidate
+			INNER JOIN vote ON vote.`candidate_ID`=candidate.Id
+			where vote.Id = $user;";
 	
 	
 	// Runs query and saves the result
@@ -68,9 +68,9 @@
 	else{
 		
 		$sql = "SELECT CONCAT_WS('', candidate.`party_Id` ,': ', candidate.`fname`, ' ', candidate.`lname`) AS `whole_name`
-			FROM  `vote`
-            join candidate
-			where constituency_ID = 'Portsmouth south' and vote.Id = $user";
+			FROM candidate
+			INNER JOIN vote ON vote.`candidate_ID`=candidate.Id
+			where vote.Id = $user;";
 	
 	
 		// Runs query and saves the result
