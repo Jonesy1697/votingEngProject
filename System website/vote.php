@@ -58,23 +58,27 @@
 <head>
 	
 	<title>Choose a candidate</title>
-		<link rel="stylesheet" href="styles/style.css">
+		<link rel="stylesheet" href="style/style.css">
 	</head>
 
 <html>
 		
 	<header>
-			<img class = "resize" src="images/govuk.png" alt="Government Logo">
-            <button id = "helpButton" type="button">Help</button>
-            <div class="clear"></div>
-		</header>
+		<img class = "resize" src="images/govuk.png" alt="Government Logo">
+        <button id = "helpButton" type="button">Help</button>
+		<div class="clear"></div>
+	</header>
 		
-        <div id = "spacer">
-        </div>	
+    <div id = "spacer">
+    </div>	
 	
 	<body>
 	
 		<main>	
+		
+			<h1>Select a candidate:</h1>
+			
+			<br><br>
 		
 			<form id="form1" name="form1" method="get" action="updateDB.php">
 				<select name = "select" size = <?php echo "$num_rows"?>>
