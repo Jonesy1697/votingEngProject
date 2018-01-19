@@ -1,39 +1,23 @@
 <?php
-	$user = $_COOKIE["userName"];
 
+	$user = $_COOKIE["userName"];
+	
 	include 'db_connection.php';
  
 	$con = OpenCon();
-		
-	$values = $_GET['select'];
-
-	$sql = "select count(`Id`) 
-			from vote
-			where `Id` = $user and `election_ID` = 1;";
-	
-	
-	// Runs query and saves the result
-	$rows = mysqli_query($con, $sql); 	
-	$rows = mysqli_fetch_row($rows);
-	$rows = $rows[0];
-	if ($rows === "0"){
-	
-	$sql = "INSERT INTO `vote`(`Id`, `election_ID`, `candidate_ID`) VALUES ($user, 1, $values)";
-	
-	$con->query($sql);
 	
 	$sql = "SELECT CONCAT_WS('', candidate.`party_Id` ,': ', candidate.`fname`, ' ', candidate.`lname`) AS `whole_name`
-			FROM candidate
-			INNER JOIN vote ON vote.`candidate_ID`=candidate.Id
-			where vote.Id = $user;";
+		FROM candidate
+		INNER JOIN vote ON vote.`candidate_ID`=candidate.Id
+		where vote.Id = $user;";
 	
 	
-	// Runs query and saves the result
+		// Runs query and saves the result
 	$result = mysqli_query($con, $sql); 
 	$result = mysqli_fetch_row($result);
 	$result = $result[0];
+	
 ?>
-
 <!DOCTYPE html>
 <head>
 	
@@ -54,7 +38,7 @@
 	<body>
 		<main>	
 		
-			<h1>Vote submitted:</h1>
+			<h1>Vote already submitted:</h1>
 			
 			<?php echo "<p style='margin-left: 10%'>$result</p>" ?>
 			
@@ -63,11 +47,3 @@
 	</body>
 	
 </html>
-
-<?php
-	} else{
-	
-		header("Location: http://localhost/votingSystem/alreadyVoted.php");
-		
-	}
-?>

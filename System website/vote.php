@@ -46,13 +46,20 @@
 	$count = 0;
 		
 	// Searches wheteher the user has voted yet
-/* 	$sql = "SELECT voted FROM people WHERE name = '$user'";
-	$voted = mysqli_query($con, $sql) or die("conection failed" . $con->conect_error);
-	$voted = mysqli_fetch_row($voted);
-	$voted = $voted[0]; */
+	$sql = "select count(`Id`) 
+			from vote
+			where `Id` = $user and `election_ID` = 1;";
+	
+	
+	// Runs query and saves the result
+	$rows = mysqli_query($con, $sql); 	
+	$rows = mysqli_fetch_row($rows);
+	$rows = $rows[0];
+	
+	echo $rows;
 	
 	// If the user details are correct, and they have not yet voted
-	if ($passwordDB === $password and $DOB === $DOBDB){
+	if ($passwordDB === $password and $DOB === $DOBDB and $rows === "0"){
 ?>
 <!DOCTYPE html>
 <head>
@@ -102,11 +109,11 @@
 </html>
 <?php
 	// If the details are correct but they have voted, redirect to the already voted page
-	}/* elseif ($password === $pass and $voted == 1){
+	} elseif ($passwordDB === $password and $DOB === $DOBDB){
 		
-		header("Location: http://localhost/votingSystem/updateDB.html");
+		header("Location: http://localhost/votingSystem/alreadyVoted.php");
 		
-	} */
+	}
 	// Otherwise, the login is incorrect
 	else{
 
