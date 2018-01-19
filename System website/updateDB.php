@@ -9,29 +9,34 @@
 
 	$sql = "select count(`Id`) 
 			from vote
-			where `Id` = $user and `election_ID` = 1;";
+			where `Id` = '$user' and `election_ID` = 1;";
 	
 	
 	// Runs query and saves the result
-	$rows = mysqli_query($con, $sql); 	
-	$rows = mysqli_fetch_row($rows);
-	$rows = $rows[0];
+	$rows = mysqli_query($con, $sql);
+	$rows = mysqli_query($con, $sql); 
+	if ($rows != false){
+		$rows = mysqli_fetch_row($rows);
+		$rows = $rows[0];
+	}else{
+		$rows = "0";
+	}
+	
 	if ($rows === "0"){
 	
-	$sql = "INSERT INTO `vote`(`Id`, `election_ID`, `candidate_ID`) VALUES ($user, 1, $values)";
-	
-	$con->query($sql);
-	
-	$sql = "SELECT CONCAT_WS('', candidate.`party_Id` ,': ', candidate.`fname`, ' ', candidate.`lname`) AS `whole_name`
-			FROM candidate
-			INNER JOIN vote ON vote.`candidate_ID`=candidate.Id
-			where vote.Id = $user;";
-	
-	
-	// Runs query and saves the result
-	$result = mysqli_query($con, $sql); 
-	$result = mysqli_fetch_row($result);
-	$result = $result[0];
+		$sql = "INSERT INTO `vote`(`Id`, `election_ID`, `candidate_ID`) VALUES ('$user', 1, $values)";
+		
+		$con->query($sql);
+		
+		$sql = "SELECT CONCAT_WS('', candidate.`party_Id` ,': ', candidate.`fname`, ' ', candidate.`lname`) AS `whole_name`
+				FROM candidate
+				INNER JOIN vote ON vote.`candidate_ID`=candidate.Id
+				where vote.Id = '$user';";
+					
+		// Runs query and saves the result
+		$result = mysqli_query($con, $sql); 
+		$result = mysqli_fetch_row($result);
+		$result = $result[0];
 ?>
 
 <!DOCTYPE html>
