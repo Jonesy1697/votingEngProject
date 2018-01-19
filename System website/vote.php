@@ -50,11 +50,15 @@
 			from vote
 			where `Id` = $user and `election_ID` = 1;";
 	
-	
 	// Runs query and saves the result
-	$rows = mysqli_query($con, $sql); 	
-	$rows = mysqli_fetch_row($rows);
-	$rows = $rows[0];
+	$rows = mysqli_query($con, $sql); 
+	
+	if ($rows[0]!= null){
+		$rows = mysqli_fetch_row($rows);
+		$rows = $rows[0];}
+	else{	
+		$rows = 0;
+	}
 		
 	// If the user details are correct, and they have not yet voted
 	if ($passwordDB === $password and $DOB === $DOBDB and $rows === "0"){
