@@ -5,6 +5,8 @@
  
 	$con = OpenCon();
 		
+	if (compareElectionDate($con)){	
+		
 	$values = $_GET['select'];
 
 	$sql = "select count(`Id`) 
@@ -70,9 +72,14 @@
 </html>
 
 <?php
-	} else{
-	
-		header("Location: http://localhost/votingSystem/alreadyVoted.php");
+		} else{
 		
-	}
+			header("Location: http://localhost/votingSystem/alreadyVoted.php");
+			
+		}
+	}else{
+	
+			header("Location: http://localhost/votingSystem/votingClosed.html");
+	
+	}	
 ?>

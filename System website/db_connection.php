@@ -1,5 +1,7 @@
 <?php
  
+ $date = "2018-05-03"; //date("Y-m-d");
+ 
 function OpenCon()
  {
  $dbhost = "localhost";
@@ -12,9 +14,27 @@ function OpenCon()
  return $conn;
  }
  
-function CloseCon($conn)
+function CloseCon($con)
  {
- $conn -> close();
+ $con -> close();
  }
    
+function compareElectionDate($con){
+	   
+	$sql = "SELECT `electionDate` FROM `election` WHERE `id` = 1;";
+	$electionDate = mysqli_query($con, $sql);
+	$electionDate = mysqli_fetch_row($electionDate);
+	$electionDate = $electionDate[0];
+	
+	if ($electionDate === $GLOBALS['date']){
+		
+		return true;
+	
+	}else{
+		
+		return false;
+		
+	}
+	
+	}   
 ?>

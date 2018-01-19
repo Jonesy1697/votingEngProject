@@ -2,11 +2,11 @@
 	ini_set('display_errors',1);
 	error_reporting(E_ALL);
 	
-	//electionDate = "2018-05-03";
-
 	include 'db_connection.php';
  
 	$con = OpenCon();
+	
+	if (compareElectionDate($con)){
 		
 	$sql = "SELECT CONCAT_WS('', `party_Id` ,': ', `fname`, ' ', `lname`) AS `whole_name`
 			FROM `candidate`
@@ -50,7 +50,7 @@
 	// Searches wheteher the user has voted yet
 	$sql = "select count(`Id`) 
 			from vote
-			where `Id` = $user and `election_ID` = 1;";
+			where `Id` = '$user' and `election_ID` = 1;";
 	
 	// Runs query and saves the result
 	$rows = mysqli_query($con, $sql); 
@@ -60,12 +60,6 @@
 	}else{
 		$rows = "0";
 	}
-
-		
-	$sql = "SELECT `electionDate` FROM `election` where `id` = 1;";
-	$electionDateDB = mysqli_query($con, $sql) or die("connection failed" . $con->conect_error);
-	$electionDateDB = mysqli_fetch_row($electionDateDB);
-	$electionDateDB = $electionDateDB[0];
 			
 	// If the user details are correct, and they have not yet voted
 	if ($passwordDB === $password and $DOB === $DOBDB and $rows === "0"){
@@ -120,7 +114,7 @@
 	// If the details are correct but they have voted, redirect to the already voted page
 	} elseif ($passwordDB === $password and $DOB === $DOBDB){
 		
-		//header("Location: http://localhost/votingSystem/alreadyVoted.php");
+		header("Location: http://localhost/votingSystem/alreadyVoted.php");
 		
 	}
 	// Otherwise, the login is incorrect
@@ -147,7 +141,7 @@
 	<body>
 		<main style = "text-align: center;">		
 			<p>Incorrect login</p>
-			<form action="index.html">
+			<form action="index.php">
 				<input type="submit" value="Back" class = "fsSubmitButton"/>
 			</form>
 		</main>
@@ -156,6 +150,10 @@
 
 <?php
 
-	}
-
+		}
+	}else{
+	
+			header("Location: http://localhost/votingSystem/votingClosed.html");
+	
+	}	
 ?>

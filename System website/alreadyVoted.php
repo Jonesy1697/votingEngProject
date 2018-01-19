@@ -5,6 +5,8 @@
 	include 'db_connection.php';
  
 	$con = OpenCon();
+
+	if (compareElectionDate($con)){
 	
 	$sql = "SELECT CONCAT_WS('', candidate.`party_Id` ,': ', candidate.`fname`, ' ', candidate.`lname`) AS `whole_name`
 				FROM candidate
@@ -47,3 +49,11 @@
 	</body>
 	
 </html>
+<?php
+
+	}else{
+	
+			header("Location: http://localhost/votingSystem/votingClosed.html");
+	
+	}	
+?>

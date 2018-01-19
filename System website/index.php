@@ -1,3 +1,15 @@
+<?php
+	ini_set('display_errors',1);
+	error_reporting(E_ALL);
+	
+	include 'db_connection.php';
+ 
+	$con = OpenCon();
+	
+	if (compareElectionDate($con)){
+	
+?>
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -49,3 +61,10 @@
 		</main>		
 	</body>	
 </html>
+<?php
+	}else{
+	
+			header("Location: http://localhost/votingSystem/votingClosed.html");
+	
+	}
+?>
