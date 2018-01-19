@@ -15,8 +15,8 @@
 	// Runs query and saves the result
 	$rows = mysqli_query($con, $sql); 	
 	$rows = mysqli_fetch_row($rows);
-		
-	if ($rows[0] === "0"){
+	$rows = $rows[0];
+	if ($rows === "0"){
 	
 	$sql = "INSERT INTO `vote`(`Id`, `election_ID`, `candidate_ID`) VALUES ($user, 1, $values)";
 	
@@ -31,6 +31,7 @@
 	// Runs query and saves the result
 	$result = mysqli_query($con, $sql); 
 	$result = mysqli_fetch_row($result);
+	$result = $result[0];
 ?>
 
 <!DOCTYPE html>
@@ -55,7 +56,7 @@
 		
 			<h1>Vote submitted:</h1>
 			
-			<?php echo "<p style='margin-left: 10%'>$result[0]</p>" ?>
+			<?php echo "<p style='margin-left: 10%'>$result</p>" ?>
 			
 		</main>
 		
@@ -76,6 +77,7 @@
 		// Runs query and saves the result
 		$result = mysqli_query($con, $sql); 
 		$result = mysqli_fetch_row($result);
+		$result = $result[0];
 	
 ?>
 <!DOCTYPE html>
@@ -100,7 +102,7 @@
 		
 			<h1>Vote already submitted:</h1>
 			
-			<?php echo "<p style='margin-left: 10%'>$result[0]</p>" ?>
+			<?php echo "<p style='margin-left: 10%'>$result</p>" ?>
 			
 		</main>
 		

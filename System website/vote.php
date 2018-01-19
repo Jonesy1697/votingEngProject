@@ -26,7 +26,7 @@
 	
 	// Validates entered username and password
 	$user = $_GET['voterID'];
-	$pass = $_GET['password'];
+	$password = $_GET['password'];
 	$DOB = $_GET['DOB'];
 	
 	// Stores username as a cookie to later be used again			
@@ -34,17 +34,17 @@
 				
 	// Searchs for the user password
 	$sql = "SELECT password FROM voter WHERE id = '$user'";
-	$password = mysqli_query($con, $sql) or die("conection failed" . $con->conect_error);
-	$password = mysqli_fetch_row($password);
-	$password = $password[0];
+	$passwordDB = mysqli_query($con, $sql) or die("conection failed" . $con->conect_error);
+	$passwordDB = mysqli_fetch_row($passwordDB);
+	$passwordDB = $passwordDB[0];
 		
 	$sql = "SELECT DOB FROM voter WHERE id = '$user'";
-	$DOB = mysqli_query($con, $sql) or die("conection failed" . $con->conect_error);
-	$DOB = mysqli_fetch_row($DOB);
-	$DOB = $password[0];
+	$DOBDB = mysqli_query($con, $sql) or die("conection failed" . $con->conect_error);
+	$DOBDB = mysqli_fetch_row($DOBDB);
+	$DOBDB = $DOBDB[0];
 	
 	$count = 0;
-	
+		
 	// Searches wheteher the user has voted yet
 /* 	$sql = "SELECT voted FROM people WHERE name = '$user'";
 	$voted = mysqli_query($con, $sql) or die("conection failed" . $con->conect_error);
@@ -52,7 +52,7 @@
 	$voted = $voted[0]; */
 	
 	// If the user details are correct, and they have not yet voted
-	if ($password === $pass){
+	if ($passwordDB === $password and $DOB === $DOBDB){
 ?>
 <!DOCTYPE html>
 <head>
@@ -117,7 +117,7 @@
 <head>
 	
 	<title>Invalid details</title>
-		<link rel="stylesheet" href="styles/style.css">
+		<link rel="stylesheet" href="style/style.css">
 	</head>
 
 <html>
