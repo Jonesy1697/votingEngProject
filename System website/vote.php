@@ -8,61 +8,26 @@
 	
 	if (compareElectionDate($con)){
 		
-	$sql = "SELECT CONCAT_WS('', `party_Id` ,': ', `fname`, ' ', `lname`) AS `whole_name`
-			FROM `candidate`
-			where constituency_ID = 'Portsmouth south'
-            ORDER BY lname ASC;";
-	
-	
-	// Runs query and saves the result
-	$result = mysqli_query($con, $sql); 
-			
-	$num_rows = (int)mysqli_num_rows($result);
-	
-	$sql = "SELECT `Id`
-			FROM `candidate`
-			where constituency_ID = 'Portsmouth south'
-            ORDER BY lname ASC;";
-	
-	$Ids = mysqli_query($con, $sql); 
-	
-	// Validates entered username and password
-	$user = $_GET['voterID'];
-	$password = $_GET['password'];
-	$DOB = $_GET['DOB'];
-	
-	// Stores username as a cookie to later be used again			
-	setcookie("userName",$user,time()+8*3600);
+		$result = getCandidates($con);
 				
-	// Searchs for the user password
-	$sql = "SELECT password FROM voter WHERE id = '$user'";
-	$passwordDB = mysqli_query($con, $sql) or die("connection failed" . $con->conect_error);
-	$passwordDB = mysqli_fetch_row($passwordDB);
-	$passwordDB = $passwordDB[0];
+		$num_rows = (int)mysqli_num_rows($result);
 		
-	$sql = "SELECT DOB FROM voter WHERE id = '$user'";
-	$DOBDB = mysqli_query($con, $sql) or die("connection failed" . $con->conect_error);
-	$DOBDB = mysqli_fetch_row($DOBDB);
-	$DOBDB = $DOBDB[0];
-	
-	$count = 0;
+		$Ids = getCandidateIDs($con);
 		
-	// Searches wheteher the user has voted yet
-	$sql = "select count(`Id`) 
-			from vote
-			where `Id` = '$user' and `election_ID` = 1;";
-	
-	// Runs query and saves the result
-	$rows = mysqli_query($con, $sql); 
-	if ($rows != false){
-		$rows = mysqli_fetch_row($rows);
-		$rows = $rows[0];
-	}else{
-		$rows = "0";
-	}
+		// Validates entered username and password
+		$user = $_GET['voterID'];
+		$password = $_GET['password'];
+		$DOB = $_GET['DOB'];
+		
+		// Stores username as a cookie to later be used again			
+		setcookie("userName",$user,time()+8*3600);
+					
+		// Searchs for the user password
+					
+		$count = 0;
 			
-	// If the user details are correct, and they have not yet voted
-	if ($passwordDB === $password and $DOB === $DOBDB and $rows === "0"){
+		// If the user details are correct, and they have not yet voted
+		if (validVote($con, $user, $password, $DOB)){
 ?>
 <!DOCTYPE html>
 <head>
@@ -112,7 +77,7 @@
 </html>
 <?php
 	// If the details are correct but they have voted, redirect to the already voted page
-	} elseif ($passwordDB === $password and $DOB === $DOBDB){
+	} elseif (validUser($con, $user, $password, $DOB)){
 		
 		header("Location: http://localhost/votingSystem/alreadyVoted.php");
 		
