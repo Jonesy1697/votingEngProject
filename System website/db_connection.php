@@ -1,7 +1,6 @@
 <?php
  
  $date = "2018-05-03"; //date("Y-m-d");
- $electionID = 1;
  
 function getCandidates($con){
 	   
@@ -61,13 +60,11 @@ function getCandidateIDs($con){
 }
  
 function getElection($con){
-	
-	$ID = $GLOBALS['electionID'];
-	
-	$sql = "SELECT `name` FROM `election` WHERE `id` = $ID;";
-	$electionDate = mysqli_query($con, $sql);
-	$electionDate = mysqli_fetch_row($electionDate);
-	return $electionDate[0];
+		
+	$sql = "SELECT `name` FROM `election` order by `electionDate` DESC;";
+	$name = mysqli_query($con, $sql);
+	$name = mysqli_fetch_row($name);
+	return $name[0];
 	
 }
  
@@ -88,10 +85,9 @@ function CloseCon($con){
    
 function compareElectionDate($con){
 	
-	$ID = $GLOBALS['electionID'];
 	$date = $GLOBALS['date'];
 	
-	$sql = "SELECT `electionDate` FROM `election` WHERE `id` = $ID;";
+	$sql = "SELECT `electionDate` FROM `election` order by `electionDate` DESC;";
 	$electionDate = mysqli_query($con, $sql);
 	$electionDate = mysqli_fetch_row($electionDate);
 	$electionDate = $electionDate[0];
