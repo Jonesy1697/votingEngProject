@@ -22,7 +22,7 @@
 <head>
 	
 	<title>Vote submitted</title>
-		<link rel="stylesheet" href="style/style.css">
+		<link rel="stylesheet" href="styles/style.css">
 	</head>
 
 <html>
@@ -37,8 +37,8 @@
 	
 	<body>
 		<main>	
-		
-			<h1>Vote submitted:</h1>
+			<h1><?php echo getElection($con) ?></h1>
+			<h2>Vote submitted:</h2>
 			
 			<?php echo "<p style='margin-left: 10%'>$result</p>" ?>
 			

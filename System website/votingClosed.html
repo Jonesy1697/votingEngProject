@@ -16,7 +16,7 @@
 <html>
 	<head>
 		<title>Eurovision scorer</title>
-		<link rel="stylesheet" href="style/style.css">
+		<link rel="stylesheet" href="styles/style.css">
 	</head>
 	
 	<body>
@@ -30,9 +30,8 @@
         </div>
         
 		<main style = "text-align: center;">
-
-			<p>Voting is not currently open<p>	
-			
+			<h1><?php echo getElection($con) ?></h1>
+			<h2>Voting is not currently open<h2>
 			<br>			
 		</main>		
 	</body>	

@@ -33,7 +33,7 @@
 <head>
 	
 	<title>Choose a candidate</title>
-		<link rel="stylesheet" href="style/style.css">
+		<link rel="stylesheet" href="styles/style.css">
 	</head>
 
 <html>
@@ -50,11 +50,9 @@
 	<body>
 	
 		<main>	
-		
-			<h1>Select a candidate:</h1>
-			
-			<br><br>
-		
+			<h1><?php echo getElection($con) ?></h1>
+			<h2>Select a candidate:</h2>
+			<br>
 			<form id="form1" name="form1" method="get" action="updateDB.php">
 				<select name = "select" size = <?php echo "$num_rows"?>>
 				<!--Creates a dropdown menu-->
@@ -92,7 +90,7 @@
 <head>
 	
 	<title>Invalid details</title>
-		<link rel="stylesheet" href="style/style.css">
+		<link rel="stylesheet" href="styles/style.css">
 	</head>
 
 <html>
@@ -104,8 +102,9 @@
 	</header>	
 	
 	<body>
-		<main style = "text-align: center;">		
-			<p>Incorrect login</p>
+		<main style = "text-align: center;">	
+			<h1><?php echo getElection($con) ?></h1>
+			<h2>Incorrect login</h2>
 			<form action="index.php">
 				<input type="submit" value="Back" class = "fsSubmitButton"/>
 			</form>

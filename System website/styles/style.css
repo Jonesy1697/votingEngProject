@@ -1,0 +1,115 @@
+body{
+    margin:0px;
+}
+
+main{	
+	margin: 20%;
+    margin-top: 2%;
+	margin-bottom: 2%;
+	padding: 5%;
+	padding-top: 2%;
+	padding-bottom: 2%;
+}
+
+header {
+	height: 5%;
+	background: rgb(0, 0, 0);
+	width:100%;
+	padding-top: 0.5%;
+}
+
+h1 {
+    color: #111;
+	font-size: 150%;
+	font-family: Tahoma;
+	font-weight: bold;
+}
+
+h2 {
+    color: #111;
+	font-size: 100%;
+	font-family: Tahoma;
+	font-weight: bold;
+}
+
+p {
+    color: #111;
+	font-size: 100%;
+	font-family: Tahoma;
+	font-weight: bold;
+}
+
+img.resize{
+    height: 25%;
+    width: 25%;
+    margin-left: 20%;
+}
+
+select{
+	color: #111;
+	font-size: 100%;
+	font-family: Tahoma;
+}
+
+input{
+	color: #111;
+	font-size: 100%;
+	font-family: Tahoma;
+	font-weight: bold;
+    text-align: center;
+}
+
+button{
+	color: #111;
+	font-size: 100%;
+	font-family: Tahoma;
+	font-weight: bold;
+}
+
+#helpButton{
+    display: block;
+    padding: 1.5%;
+    padding-right: 5%;
+    padding-left: 5%;
+    font-size: 21px;
+    background-color: rgb(255,255,255);
+    font-weight: bold;
+    color: #111;
+    border-radius: 15px;
+    border: 2px solid #000;
+    cursor: pointer;
+    float: right;
+    margin-right: 20%;
+    margin-top: 1%;
+}
+
+.clear {
+    clear:both;
+}
+
+label{
+	font-size: 100%;
+	font-family: Tahoma;
+	color: #111;
+	font-weight: bold;
+}
+
+.fsSubmitButton{
+padding: 10px 20px 11px;
+font-size: 21px;
+background-color: rgb(50,195,50);
+font-weight: bold;
+color: #111;
+border-radius: 15px;
+border: 2px solid #000;
+cursor: pointer;
+}
+
+#spacer {
+	height: 5%;
+	background: #1e90ff;
+	width:60%;
+	padding-top: 0.5%;
+    margin-left:auto;
+    margin-right:auto;
+}

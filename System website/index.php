@@ -14,7 +14,7 @@
 <html>
 	<head>
 		<title>Eurovision scorer</title>
-		<link rel="stylesheet" href="style/style.css">
+		<link rel="stylesheet" href="styles/style.css">
 	</head>
 	
 	<body>
@@ -28,6 +28,8 @@
         </div>
         
 		<main style = "text-align: center;">
+		
+		<h1><?php echo getElection($con) ?></h1>
 			<form name = "login" action="vote.php" method="get" accept-charset="utf-8">
 			<!--Creates the login form which directs to the validation on vote.php-->
                 
