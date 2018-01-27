@@ -32,7 +32,7 @@
 <!DOCTYPE html>
 <head>
 	
-	<title>Choose a candidate</title>
+	<title><?php echo getElection($con) ?></title>
 		<link rel="stylesheet" href="styles/style.css">
 	</head>
 
@@ -89,7 +89,7 @@
 
 <head>
 	
-	<title>Invalid details</title>
+	<title><?php echo getElection($con) ?></title>
 		<link rel="stylesheet" href="styles/style.css">
 	</head>
 

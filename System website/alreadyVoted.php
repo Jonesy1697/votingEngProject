@@ -14,7 +14,7 @@
 <!DOCTYPE html>
 <head>
 	
-	<title>Vote submitted</title>
+	<title><?php echo getElection($con) ?></title>
 		<link rel="stylesheet" href="styles/style.css">
 	</head>
 
