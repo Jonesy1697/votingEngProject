@@ -10,17 +10,19 @@
 	
 ?>
 
+
 <!DOCTYPE html>
 <html>
 	<head>
 		<title><?php echo getElection($con) ?></title>
 		<link rel="stylesheet" href="styles/style.css">
+		<script src="prompts.js" type="text/javascript"></script>
 	</head>
 	
 	<body>
 		<header>
 			<img class = "resize" src="images/govuk.png" alt="Government Logo">
-            <button id = "helpButton" type="button">Help</button>
+            <button id = "helpButton" type="button" onclick="loginHelp()">Help</button>
             <div class="clear"></div>
 		</header>
 		
@@ -63,6 +65,7 @@
 		</main>		
 	</body>	
 </html>
+
 <?php
 	}else{
 	

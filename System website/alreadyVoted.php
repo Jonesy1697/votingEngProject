@@ -12,23 +12,23 @@
 	
 ?>
 <!DOCTYPE html>
-<head>
-	
-	<title><?php echo getElection($con) ?></title>
-		<link rel="stylesheet" href="styles/style.css">
+<html>	
+	<head>
+		<title><?php echo getElection($con) ?></title>
+		<link rel="stylesheet" href="styles/style.css">		
+		<script src="prompts.js" type="text/javascript"></script>
 	</head>
-
-<html>
-		
-	<header>
-		<img class = "resize" src="images/govuk.png" alt="Government Logo">
-        <button id = "helpButton" type="button">Help</button>
-        <div class="clear"></div>
-	</header>
-		
-    <div id = "spacer"></div>	
 	
 	<body>
+	
+		<header>
+			<img class = "resize" src="images/govuk.png" alt="Government Logo">
+			<button id = "helpButton" type="button" onclick="alreadyVotedHelp()">Help</button>
+			<div class="clear"></div>
+		</header>
+		
+			<div id = "spacer"></div>	
+		
 		<main>	
 		
 			<h1><?php echo getElection($con) ?></h1>

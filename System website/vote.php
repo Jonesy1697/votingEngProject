@@ -30,17 +30,16 @@
 		if (validVote($con, $user, $password, $DOB)){
 ?>
 <!DOCTYPE html>
-<head>
-	
-	<title><?php echo getElection($con) ?></title>
-		<link rel="stylesheet" href="styles/style.css">
-	</head>
-
 <html>
-		
+	<head>
+		<title><?php echo getElection($con) ?></title>
+		<link rel="stylesheet" href="styles/style.css">
+		<script src="prompts.js" type="text/javascript"></script>
+	</head>
+	
 	<header>
 		<img class = "resize" src="images/govuk.png" alt="Government Logo">
-        <button id = "helpButton" type="button">Help</button>
+        <button id = "helpButton" type="button" onclick="votingHelp()">Help</button>
 		<div class="clear"></div>
 	</header>
 		
@@ -87,21 +86,27 @@
 
 <!DOCTYPE html>
 
-<head>
 	
-	<title><?php echo getElection($con) ?></title>
-		<link rel="stylesheet" href="styles/style.css">
-	</head>
 
 <html>
-		
-	<header>
-		<img class = "resize" src="images/govuk.png" alt="Government Logo">
-		<button id = "helpButton" type="button">Help</button>
-        <div class="clear"></div>
-	</header>	
+
+	<head>
+		<title><?php echo getElection($con) ?></title>
+		<link rel="stylesheet" href="styles/style.css">
+		<script src="prompts.js" type="text/javascript"></script>
+	</head>
 	
 	<body>
+	
+		<header>
+			<img class = "resize" src="images/govuk.png" alt="Government Logo">
+			<button id = "helpButton" type="button" onclick="incorrectLoginHelp()">Help</button>
+			<div class="clear"></div>
+		</header>	
+		
+		<div id = "spacer">
+		</div>
+	
 		<main style = "text-align: center;">	
 			<h1><?php echo getElection($con) ?></h1>
 			<h2>Incorrect login</h2>
@@ -121,3 +126,10 @@
 	
 	}	
 ?>
+
+<script>
+	// When the user clicks on <div>, open the popup
+	function helpFunction() {
+		alert("To vote on the system, users must first log on. \n \n To do this, please enter your voter ID, found on your polling card, you chosen password and your date of birth.");
+	}
+</script>
