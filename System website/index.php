@@ -4,6 +4,10 @@
 	
 	include 'db_connection.php';
  
+	setcookie("userName"," ",time()+8*3600);
+	setcookie("password"," ",time()+8*3600);
+	setcookie("DOB"," ",time()+8*3600);
+	 
 	$con = OpenCon();
 	
 	if (compareElectionDate($con)){

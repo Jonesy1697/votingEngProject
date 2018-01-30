@@ -2,6 +2,8 @@
 	ini_set('display_errors',1);
 	error_reporting(E_ALL);
 	
+	$failed=false;
+	
 	include 'db_connection.php';
  
 	$con = OpenCon();
@@ -14,15 +16,24 @@
 		
 		$Ids = getCandidateIDs($con);
 		
-		// Validates entered username and password
-		$user = $_GET['voterID'];
-		$password = $_GET['password'];
-		$DOB = $_GET['DOB'];
+		if( $_COOKIE["userName"] == " "){
 		
-		// Stores username as a cookie to later be used again			
-		setcookie("userName",$user,time()+8*3600);
-					
-		// Searchs for the user password
+			// Validates entered username and password
+			$user = $_GET['voterID'];
+			$password = $_GET['password'];
+			$DOB = $_GET['DOB'];
+			
+			// Stores username as a cookie to later be used again			
+			setcookie("userName",$user,time()+8*3600);
+			setcookie("password",$password,time()+8*3600);
+			setcookie("DOB",$DOB,time()+8*3600);
+		}
+		else{
+			$user = $_COOKIE["userName"];
+			$password = $_COOKIE["password"];
+			$DOB = $_COOKIE["DOB"];
+			$failed = true;
+		}
 					
 		$count = 0;
 			
@@ -49,6 +60,13 @@
 	<body>
 	
 		<main>	
+		
+			<?php
+				if($failed==true){
+					echo"<p>No candidate selected</p>";
+				}
+			?>
+			
 			<h1><?php echo getElection($con) ?></h1>
 			<h2>Select a candidate:</h2>
 			<br>

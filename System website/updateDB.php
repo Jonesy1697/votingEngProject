@@ -7,15 +7,20 @@
 		
 	if (compareElectionDate($con)){	
 		
-	$values = $_GET['select'];
-	
-	if (notAlreadyVoted($con, $user)){
+		$values = $_GET['select'];
 		
-		//submit vote
-		$sql = "INSERT INTO `vote`(`Id`, `election_ID`, `candidate_ID`) VALUES ('$user', 1, $values)";
-		$con->query($sql);
-		
-		$result = getVote($con,$user);
+		if ($values == null){
+
+			header("Location: http://localhost/votingSystem/vote.php");
+			
+		}else{
+			if (notAlreadyVoted($con, $user)){
+				
+				//submit vote
+				$sql = "INSERT INTO `vote`(`Id`, `election_ID`, `candidate_ID`) VALUES ('$user', 1, $values)";
+				$con->query($sql);
+				
+				$result = getVote($con,$user);
 ?>
 
 <!DOCTYPE html>
@@ -50,14 +55,11 @@
 </html>
 
 <?php
-		} else{
-		
-			header("Location: http://localhost/votingSystem/alreadyVoted.php");
-			
-		}
+			}else{			
+				header("Location: http://localhost/votingSystem/alreadyVoted.php");
+				}
+	}
 	}else{
-	
-			header("Location: http://localhost/votingSystem/votingClosed.html");
-	
+		header("Location: http://localhost/votingSystem/votingClosed.html");
 	}	
 ?>
