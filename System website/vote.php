@@ -63,7 +63,7 @@
 		
 			<?php
 				if($failed==true){
-					echo"<p>No candidate selected</p>";
+					echo"<p style = \"color:red\">No candidate selected</p>";
 				}
 			?>
 			
@@ -140,7 +140,7 @@
 		}
 	}else{
 	
-			header("Location: http://localhost/votingSystem/votingClosed.html");
+			header("Location: http://localhost/votingSystem/votingClosed.php");
 	
 	}	
 ?>

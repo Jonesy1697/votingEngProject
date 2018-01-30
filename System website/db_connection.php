@@ -1,6 +1,6 @@
 <?php
  
- $date = "2018-05-03"; //date("Y-m-d");
+ $date = date("Y-m-d");
  
 function getCandidates($con){
 	   

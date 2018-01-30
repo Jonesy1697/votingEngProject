@@ -60,6 +60,6 @@
 				}
 	}
 	}else{
-		header("Location: http://localhost/votingSystem/votingClosed.html");
+		header("Location: http://localhost/votingSystem/votingClosed.php");
 	}	
 ?>

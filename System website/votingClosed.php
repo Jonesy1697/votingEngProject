@@ -5,11 +5,6 @@
 	include 'db_connection.php';
  
 	$con = OpenCon();
-	
-	$electionOpen = compareElectionDate($con);
-	
-	if ($electionOpen){
-	
 ?>
 
 <!DOCTYPE html>
@@ -17,6 +12,7 @@
 	<head>
 		<title><?php echo getElection($con) ?></title>
 		<link rel="stylesheet" href="styles/style.css">
+		<script src="prompts.js" type="text/javascript"></script>
 	</head>
 	
 	<body>
