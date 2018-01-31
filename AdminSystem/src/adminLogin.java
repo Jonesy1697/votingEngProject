@@ -44,7 +44,6 @@ public class adminLogin extends javax.swing.JFrame {
         setAutoRequestFocus(false);
         setBackground(new java.awt.Color(255, 255, 255));
         setForeground(java.awt.Color.white);
-        setPreferredSize(new java.awt.Dimension(400, 400));
         setResizable(false);
         getContentPane().setLayout(null);
 
@@ -97,7 +96,7 @@ public class adminLogin extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(inID, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(inPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -108,9 +107,9 @@ public class adminLogin extends javax.swing.JFrame {
                         .addComponent(lblPassword1)
                         .addGap(100, 100, 100))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addGap(0, 88, Short.MAX_VALUE)
                 .addComponent(jButton1)
-                .addGap(88, 88, 88))
+                .addGap(85, 85, 85))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
