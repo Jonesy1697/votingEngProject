@@ -62,7 +62,6 @@ public class mainMenu extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(400, 400));
-        setPreferredSize(new java.awt.Dimension(400, 400));
         getContentPane().setLayout(null);
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
@@ -276,8 +275,8 @@ public class mainMenu extends javax.swing.JFrame {
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(70, 70, 70)
-                .addComponent(pnlManage, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(59, 59, 59)
+                .addComponent(pnlManage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(120, Short.MAX_VALUE))
             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
@@ -322,6 +321,20 @@ public class mainMenu extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnManageActionPerformed
 
+    private void btnNationalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNationalActionPerformed
+        
+        this.dispose();
+        new nationalResults().setVisible(true);
+        
+    }//GEN-LAST:event_btnNationalActionPerformed
+
+    private void btnConstituencyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConstituencyActionPerformed
+        
+        this.dispose();
+        new localResults().setVisible(true);
+        
+    }//GEN-LAST:event_btnConstituencyActionPerformed
+
     private void btnNational3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNational3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnNational3ActionPerformed
@@ -337,14 +350,6 @@ public class mainMenu extends javax.swing.JFrame {
     private void btnConstituency1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConstituency1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnConstituency1ActionPerformed
-
-    private void btnNationalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNationalActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnNationalActionPerformed
-
-    private void btnConstituencyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConstituencyActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnConstituencyActionPerformed
 
     /**
      * @param args the command line arguments
@@ -382,12 +387,10 @@ public class mainMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnConstituency;
     private javax.swing.JButton btnConstituency1;
     private javax.swing.JButton btnConstituency2;
     private javax.swing.JButton btnLogout;
     private javax.swing.JButton btnManage;
-    private javax.swing.JButton btnNational;
     private javax.swing.JButton btnNational1;
     private javax.swing.JButton btnNational2;
     private javax.swing.JButton btnNational3;
@@ -400,7 +403,6 @@ public class mainMenu extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel pnlManage;
-    private javax.swing.JPanel pnlView;
     private javax.swing.JPanel pnlView1;
     // End of variables declaration//GEN-END:variables
 }
