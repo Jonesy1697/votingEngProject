@@ -1,6 +1,7 @@
 
-import java.awt.Dimension;
-import java.awt.Toolkit;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -14,12 +15,19 @@ import java.awt.Toolkit;
  */
 public class adminLogin extends javax.swing.JFrame {
 
+    databaseConnect con;
+    
     /**
      * Creates new form adminLogin
+     * @throws java.sql.SQLException
      */
-    public adminLogin() {
+    public adminLogin() throws SQLException {
+    
+        if (con == null){
+            con = new databaseConnect(); 
+        }  
         
-      initComponents();
+        initComponents();
         
     }
 
@@ -42,7 +50,7 @@ public class adminLogin extends javax.swing.JFrame {
         lblPassword = new javax.swing.JLabel();
         inPassword = new javax.swing.JPasswordField();
         lblPassword1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnLogin = new javax.swing.JButton();
         inPassword2 = new javax.swing.JPasswordField();
         lblTitle = new javax.swing.JLabel();
 
@@ -117,12 +125,12 @@ public class adminLogin extends javax.swing.JFrame {
         lblPassword1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblPassword1.setText("DOB");
 
-        jButton1.setBackground(new java.awt.Color(52, 144, 52));
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jButton1.setText("Login");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnLogin.setBackground(new java.awt.Color(52, 144, 52));
+        btnLogin.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        btnLogin.setText("Login");
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnLoginActionPerformed(evt);
             }
         });
 
@@ -162,7 +170,7 @@ public class adminLogin extends javax.swing.JFrame {
                         .addGap(104, 104, 104))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(btnLogin)
                 .addGap(86, 86, 86))
         );
         jPanel2Layout.setVerticalGroup(
@@ -181,7 +189,7 @@ public class adminLogin extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(inPassword2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         lblTitle.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -219,12 +227,12 @@ public class adminLogin extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_inPasswordActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         
         this.dispose();
-        new mainMenu().setVisible(true);        
+        new mainMenu(con).setVisible(true);        
         
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnLoginActionPerformed
 
     private void inPassword2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inPassword2ActionPerformed
         // TODO add your handling code here:
@@ -260,16 +268,20 @@ public class adminLogin extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new adminLogin().setVisible(true);
+                try {
+                    new adminLogin().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(adminLogin.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnLogin;
     private javax.swing.JTextField inID;
     private javax.swing.JPasswordField inPassword;
     private javax.swing.JPasswordField inPassword2;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

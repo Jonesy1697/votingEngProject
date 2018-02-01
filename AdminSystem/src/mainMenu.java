@@ -1,5 +1,7 @@
-
 import java.awt.Color;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -12,11 +14,16 @@ import java.awt.Color;
  * @author up772320
  */
 public class mainMenu extends javax.swing.JFrame {
-
+    
+    databaseConnect con;
+    
     /**
      * Creates new form mainMenu
+     * @param con
      */
-    public mainMenu() {
+    public mainMenu(databaseConnect con) {
+        
+        this.con = con;
         
         initComponents();
         btnView.setBackground(new Color(0,153,255).brighter());
@@ -307,7 +314,11 @@ public class mainMenu extends javax.swing.JFrame {
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
         
         this.dispose();
-        new adminLogin().setVisible(true);
+        try {
+            new adminLogin().setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(mainMenu.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }//GEN-LAST:event_btnLogoutActionPerformed
 
@@ -337,79 +348,45 @@ public class mainMenu extends javax.swing.JFrame {
     private void btnNationalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNationalActionPerformed
         
         this.dispose();
-        new nationalResults().setVisible(true);
+        new nationalResults(con).setVisible(true);
         
     }//GEN-LAST:event_btnNationalActionPerformed
 
     private void btnConstituencyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConstituencyActionPerformed
         
         this.dispose();
-        new localResults().setVisible(true);
+        new localResults(con).setVisible(true);
         
     }//GEN-LAST:event_btnConstituencyActionPerformed
 
     private void btnEditConstituencyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditConstituencyActionPerformed
        
         this.dispose();
-        new searchConstituency().setVisible(true);
+        new searchConstituency(con).setVisible(true);
         
     }//GEN-LAST:event_btnEditConstituencyActionPerformed
 
     private void btnAddConstituencyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddConstituencyActionPerformed
 
         this.dispose();
-        new constituencyEdit().setVisible(true);
+        new constituencyEdit(con).setVisible(true);
         
     }//GEN-LAST:event_btnAddConstituencyActionPerformed
 
     private void btnEditPartyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditPartyActionPerformed
 
         this.dispose();
-        new searchParty().setVisible(true);
+        new searchParty(con).setVisible(true);
         
     }//GEN-LAST:event_btnEditPartyActionPerformed
 
     private void btnAddPartyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddPartyActionPerformed
         
         this.dispose();
-        new partyEditor().setVisible(true);
+        new partyEditor(con).setVisible(true);
         
     }//GEN-LAST:event_btnAddPartyActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(mainMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(mainMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(mainMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(mainMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new mainMenu().setVisible(true);
-            }
-        });
-    }
+ 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddConstituency;
