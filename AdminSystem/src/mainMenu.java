@@ -315,7 +315,7 @@ public class mainMenu extends javax.swing.JFrame {
         
         this.dispose();
         try {
-            new adminLogin().setVisible(true);
+            new adminLogin(con).setVisible(true);
         } catch (SQLException ex) {
             Logger.getLogger(mainMenu.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -23,14 +23,19 @@ public class adminLogin extends javax.swing.JFrame {
      */
     public adminLogin() throws SQLException {
     
-        if (con == null){
-            con = new databaseConnect(); 
-        }  
+        con = new databaseConnect(); 
         
         initComponents();
         
     }
 
+     public adminLogin(databaseConnect con) throws SQLException {
+    
+        this.con = con;
+        initComponents();
+        
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
