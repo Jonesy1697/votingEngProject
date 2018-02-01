@@ -43,13 +43,14 @@ public class mainMenu extends javax.swing.JFrame {
         btnManage = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         pnlManage = new javax.swing.JPanel();
-        btnConstituency1 = new javax.swing.JButton();
-        btnNational1 = new javax.swing.JButton();
-        btnNational2 = new javax.swing.JButton();
-        btnNational3 = new javax.swing.JButton();
+        btnAddParty = new javax.swing.JButton();
+        btnEditParty = new javax.swing.JButton();
+        btnAddConstituency = new javax.swing.JButton();
+        btnEditConstituency = new javax.swing.JButton();
         pnlView1 = new javax.swing.JPanel();
         btnConstituency2 = new javax.swing.JButton();
         btnNational4 = new javax.swing.JButton();
+        lblTitle = new javax.swing.JLabel();
 
         jButton1.setBackground(new java.awt.Color(52, 144, 52));
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
@@ -61,7 +62,9 @@ public class mainMenu extends javax.swing.JFrame {
         });
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Election viewer");
         setMinimumSize(new java.awt.Dimension(400, 400));
+        setResizable(false);
         getContentPane().setLayout(null);
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
@@ -136,17 +139,17 @@ public class mainMenu extends javax.swing.JFrame {
                 .addContainerGap(32, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnManage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnView, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnView, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(68, 68, 68)
+                .addGap(77, 77, 77)
                 .addComponent(btnView)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 129, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 135, Short.MAX_VALUE)
                 .addComponent(btnManage)
-                .addGap(121, 121, 121))
+                .addGap(106, 106, 106))
         );
 
         getContentPane().add(jPanel2);
@@ -156,39 +159,39 @@ public class mainMenu extends javax.swing.JFrame {
 
         pnlManage.setBackground(new java.awt.Color(255, 255, 255));
 
-        btnConstituency1.setBackground(new java.awt.Color(204, 204, 204));
-        btnConstituency1.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        btnConstituency1.setText("Add party");
-        btnConstituency1.addActionListener(new java.awt.event.ActionListener() {
+        btnAddParty.setBackground(new java.awt.Color(204, 204, 204));
+        btnAddParty.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        btnAddParty.setText("Add party");
+        btnAddParty.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnConstituency1ActionPerformed(evt);
+                btnAddPartyActionPerformed(evt);
             }
         });
 
-        btnNational1.setBackground(new java.awt.Color(204, 204, 204));
-        btnNational1.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        btnNational1.setText("Edit party");
-        btnNational1.addActionListener(new java.awt.event.ActionListener() {
+        btnEditParty.setBackground(new java.awt.Color(204, 204, 204));
+        btnEditParty.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        btnEditParty.setText("Edit party");
+        btnEditParty.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNational1ActionPerformed(evt);
+                btnEditPartyActionPerformed(evt);
             }
         });
 
-        btnNational2.setBackground(new java.awt.Color(204, 204, 204));
-        btnNational2.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        btnNational2.setText("Add constituency");
-        btnNational2.addActionListener(new java.awt.event.ActionListener() {
+        btnAddConstituency.setBackground(new java.awt.Color(204, 204, 204));
+        btnAddConstituency.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        btnAddConstituency.setText("Add constituency");
+        btnAddConstituency.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNational2ActionPerformed(evt);
+                btnAddConstituencyActionPerformed(evt);
             }
         });
 
-        btnNational3.setBackground(new java.awt.Color(204, 204, 204));
-        btnNational3.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        btnNational3.setText("Edit constituency");
-        btnNational3.addActionListener(new java.awt.event.ActionListener() {
+        btnEditConstituency.setBackground(new java.awt.Color(204, 204, 204));
+        btnEditConstituency.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        btnEditConstituency.setText("Edit constituency");
+        btnEditConstituency.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNational3ActionPerformed(evt);
+                btnEditConstituencyActionPerformed(evt);
             }
         });
 
@@ -199,23 +202,23 @@ public class mainMenu extends javax.swing.JFrame {
             .addGroup(pnlManageLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlManageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnConstituency1, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnNational1, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnNational2, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnNational3, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnAddParty, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEditParty, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAddConstituency, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEditConstituency, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(28, Short.MAX_VALUE))
         );
         pnlManageLayout.setVerticalGroup(
             pnlManageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlManageLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnConstituency1)
+                .addComponent(btnAddParty)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnNational1)
+                .addComponent(btnEditParty)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnNational2)
+                .addComponent(btnAddConstituency)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnNational3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnEditConstituency, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -260,6 +263,9 @@ public class mainMenu extends javax.swing.JFrame {
                 .addGap(153, 153, 153))
         );
 
+        lblTitle.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        lblTitle.setText("Main menu");
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -267,6 +273,10 @@ public class mainMenu extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(pnlManage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(58, 58, 58)
+                .addComponent(lblTitle)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel4Layout.createSequentialGroup()
                     .addComponent(pnlView1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -275,20 +285,23 @@ public class mainMenu extends javax.swing.JFrame {
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(59, 59, 59)
+                .addGap(23, 23, 23)
+                .addComponent(lblTitle)
+                .addGap(28, 28, 28)
                 .addComponent(pnlManage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(120, Short.MAX_VALUE))
+                .addContainerGap(109, Short.MAX_VALUE))
             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                    .addContainerGap(103, Short.MAX_VALUE)
+                    .addContainerGap(108, Short.MAX_VALUE)
                     .addComponent(pnlView1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(143, Short.MAX_VALUE)))
+                    .addContainerGap(148, Short.MAX_VALUE)))
         );
 
         getContentPane().add(jPanel4);
-        jPanel4.setBounds(150, 50, 250, 360);
+        jPanel4.setBounds(150, 50, 260, 370);
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
@@ -335,21 +348,33 @@ public class mainMenu extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnConstituencyActionPerformed
 
-    private void btnNational3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNational3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnNational3ActionPerformed
+    private void btnEditConstituencyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditConstituencyActionPerformed
+       
+        this.dispose();
+        new searchConstituency().setVisible(true);
+        
+    }//GEN-LAST:event_btnEditConstituencyActionPerformed
 
-    private void btnNational2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNational2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnNational2ActionPerformed
+    private void btnAddConstituencyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddConstituencyActionPerformed
 
-    private void btnNational1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNational1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnNational1ActionPerformed
+        this.dispose();
+        new constituencyEdit().setVisible(true);
+        
+    }//GEN-LAST:event_btnAddConstituencyActionPerformed
 
-    private void btnConstituency1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConstituency1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnConstituency1ActionPerformed
+    private void btnEditPartyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditPartyActionPerformed
+
+        this.dispose();
+        new searchParty().setVisible(true);
+        
+    }//GEN-LAST:event_btnEditPartyActionPerformed
+
+    private void btnAddPartyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddPartyActionPerformed
+        
+        this.dispose();
+        new partyEditor().setVisible(true);
+        
+    }//GEN-LAST:event_btnAddPartyActionPerformed
 
     /**
      * @param args the command line arguments
@@ -387,13 +412,13 @@ public class mainMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnConstituency1;
+    private javax.swing.JButton btnAddConstituency;
+    private javax.swing.JButton btnAddParty;
     private javax.swing.JButton btnConstituency2;
+    private javax.swing.JButton btnEditConstituency;
+    private javax.swing.JButton btnEditParty;
     private javax.swing.JButton btnLogout;
     private javax.swing.JButton btnManage;
-    private javax.swing.JButton btnNational1;
-    private javax.swing.JButton btnNational2;
-    private javax.swing.JButton btnNational3;
     private javax.swing.JButton btnNational4;
     private javax.swing.JButton btnView;
     private javax.swing.JButton jButton1;
@@ -402,6 +427,7 @@ public class mainMenu extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JLabel lblTitle;
     private javax.swing.JPanel pnlManage;
     private javax.swing.JPanel pnlView1;
     // End of variables declaration//GEN-END:variables
