@@ -35,4 +35,23 @@ public class databaseConnect {
         
     }   
     
+    public ResultSet getRS() {
+        
+        return rs;
+
+    }
+    
+    public void getLocalResults() throws SQLException{
+        
+        String constituency;
+        String SQL;
+        
+        stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+        SQL = "SELECT candidate.`party_Id`, COUNT(`candidate_ID`)\n" +
+                "FROM vote INNER JOIN candidate on candidate.Id = candidate_ID\n" +
+                "where candidate.constituency_Id = \"Portsmouth South\"\n" +
+                "group by candidate.party_Id\n" +
+                "order by COUNT(`candidate_ID`) DESC";
+        rs = stmt.executeQuery(SQL);
+    }    
 }

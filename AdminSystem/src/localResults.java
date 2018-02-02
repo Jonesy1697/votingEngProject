@@ -1,3 +1,11 @@
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -58,9 +66,7 @@ public class localResults extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Election viewer");
-        setMaximumSize(new java.awt.Dimension(400, 400));
         setMinimumSize(new java.awt.Dimension(400, 400));
-        setPreferredSize(new java.awt.Dimension(400, 400));
         getContentPane().setLayout(null);
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
@@ -152,7 +158,7 @@ public class localResults extends javax.swing.JFrame {
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
-        tblResults.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        tblResults.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         tblResults.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
@@ -172,6 +178,8 @@ public class localResults extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tblResults.setToolTipText("");
+        tblResults.setEnabled(false);
         tblResults.setMaximumSize(new java.awt.Dimension(10, 10));
         tblResults.setMinimumSize(new java.awt.Dimension(10, 10));
         tblResults.setPreferredSize(new java.awt.Dimension(30, 64));
@@ -200,7 +208,7 @@ public class localResults extends javax.swing.JFrame {
                 .addComponent(lblTitle)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel4);
@@ -222,9 +230,36 @@ public class localResults extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
-        
+
+        DefaultTableModel model;
+        model = (DefaultTableModel) tblResults.getModel();
+        model.setRowCount(0);
+        int count = 0;
+
+        try {
+            con.getLocalResults();
+
+            ResultSet rs = con.getRS();
+
+            while (rs.next()){
+
+                int points = rs.getInt("COUNT(`candidate_ID`)");
+                String party = rs.getString("party_Id");
+
+                System.out.println(party + " : " + points);
+
+                String[] row = {Integer.toString(points), party};
+
+                model.addRow(row);
+
+            }
+        }
+        catch (SQLException ex) {
+            Logger.getLogger(localResults.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
         tblResults.show();
-        
+
     }//GEN-LAST:event_btnSearchActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
