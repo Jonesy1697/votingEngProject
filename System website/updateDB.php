@@ -43,7 +43,7 @@
 	
 	<body>
 		<main>	
-			<h1><?php echo getElection($con) ?></h1>
+			<h1><?php echo (getElection($con) . " - " . getConstituency($con, $user))?></h1>
 			<h2>Vote submitted:</h2>
 			
 			<?php echo "<p style='margin-left: 10%'>$result</p>" ?>

@@ -31,7 +31,7 @@
 		
 		<main>	
 		
-			<h1><?php echo getElection($con) ?></h1>
+			<h1><?php echo (getElection($con) . " - " . getConstituency($con, $user)) ?></h1>
 			<br>
 			<h2>Vote already submitted:</h2>
 			

@@ -8,33 +8,32 @@
  
 	$con = OpenCon();
 	
+	if( $_COOKIE["userName"] == " "){
+		
+		$user = $_GET['voterID'];
+		$password = $_GET['password'];
+		$DOB = $_GET['DOB'];
+			
+		// Stores username as a cookie to later be used again			
+		setcookie("userName",$user,time()+8*3600);
+		setcookie("password",$password,time()+8*3600);
+		setcookie("DOB",$DOB,time()+8*3600);
+	}
+	else{
+		$user = $_COOKIE["userName"];
+		$password = $_COOKIE["password"];
+		$DOB = $_COOKIE["DOB"];
+		$failed = true;
+	}
+	
 	if (compareElectionDate($con)){
 		
-		$result = getCandidates($con);
+		$result = getCandidates($con, $user);
 				
 		$num_rows = (int)mysqli_num_rows($result);
 		
-		$Ids = getCandidateIDs($con);
+		$Ids = getCandidateIDs($con, $user);
 		
-		if( $_COOKIE["userName"] == " "){
-		
-			// Validates entered username and password
-			$user = $_GET['voterID'];
-			$password = $_GET['password'];
-			$DOB = $_GET['DOB'];
-			
-			// Stores username as a cookie to later be used again			
-			setcookie("userName",$user,time()+8*3600);
-			setcookie("password",$password,time()+8*3600);
-			setcookie("DOB",$DOB,time()+8*3600);
-		}
-		else{
-			$user = $_COOKIE["userName"];
-			$password = $_COOKIE["password"];
-			$DOB = $_COOKIE["DOB"];
-			$failed = true;
-		}
-					
 		$count = 0;
 			
 		// If the user details are correct, and they have not yet voted
@@ -67,7 +66,7 @@
 				}
 			?>
 			
-			<h1><?php echo getElection($con) ?></h1>
+			<h1><?php echo (getElection($con) . " - " . getConstituency($con, $user)) ?></h1>
 			<h2>Select a candidate:</h2>
 			<br>
 			<form id="form1" name="form1" method="get" action="updateDB.php">

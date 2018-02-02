@@ -1,18 +1,48 @@
 <?php
  
- $date = date("Y-m-d");
+ $date = $date = "2018-05-03"; //date("Y-m-d");
  
-function getCandidates($con){
+function getCandidates($con, $user){
 	   
+	$constituency = getConstituency($con, $user);
+	
 	$sql = "SELECT CONCAT_WS('', `party_Id` ,': ', `fname`, ' ', `lname`) AS `whole_name`
 				FROM `candidate`
-				where constituency_ID = 'Portsmouth south'
+				where constituency_ID = '$constituency'
 				ORDER BY lname ASC;";
 		
 		
 		// Runs query and saves the result
 	return mysqli_query($con, $sql); 
 	
+}
+
+function getConstituency($con, $user){
+			   
+	$sql = "SELECT `constituency_Id`
+			FROM address
+			INNER JOIN voter ON voter.`address_Id` = address.`Id`
+			where voter.Id = \"$user\"";
+			
+	$constituency = mysqli_query($con, $sql);
+	$constituency = mysqli_fetch_array($constituency);
+	$constituency = $constituency[0];
+	
+	return $constituency;
+	
+}
+
+function getCandidateIDs($con, $user){
+
+	$constituency = getConstituency($con, $user);
+
+	$sql = "SELECT `Id`
+			FROM `candidate`
+			where constituency_ID = 'Portsmouth south'
+			ORDER BY lname ASC;";
+		
+	return mysqli_query($con, $sql); 
+		
 }
 
 function getVote($con, $user){
@@ -48,16 +78,7 @@ function getDOB($con, $user){
 		
 }
 
-function getCandidateIDs($con){
 
-	$sql = "SELECT `Id`
-			FROM `candidate`
-			where constituency_ID = 'Portsmouth south'
-			ORDER BY lname ASC;";
-		
-	return mysqli_query($con, $sql); 
-		
-}
  
 function getElection($con){
 		
