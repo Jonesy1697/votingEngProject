@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Collections;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -46,6 +47,12 @@ public class databaseConnect {
 
     }
     
+    public ArrayList<party> getParties(){
+               
+        return parties;
+        
+    }
+    
     public void getLocalResults(String constituency) throws SQLException{
         
         String SQL;
@@ -59,28 +66,64 @@ public class databaseConnect {
         rs = stmt.executeQuery(SQL);
     }    
     
-    public void checkConstituency(String constituency) throws SQLException{
+    public boolean checkConstituency(String constituency) throws SQLException{
+        
         String SQL;
+        constituency = "\"" + constituency + "\"";
         
         stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
-        SQL = "SELECT COUNT(`Id`) from constituency where `id` = \"" + constituency + "\";";
-        System.out.println(SQL);
+        SQL = "SELECT Id FROM constituency where Id = " + constituency;
         rs = stmt.executeQuery(SQL);
         
-    }
-    
-    public void getNationalResults() throws SQLException{
+        int count = 0;
         
-        getParties();
-        getConstituencies();
-        
-        for (String item : constituencies) {
-            System.out.println(item);
+        while (rs.next()){
+            
+            count +=1;
+            
         }
         
+        return count == 0;
+        
     }
     
-    public void getParties() throws SQLException{
+    public void calculategetNationalResults() throws SQLException{
+        
+        allParties();
+        allConstituencies();
+        
+        for (String item : constituencies) {
+            getLocalResults(item);
+            rs.next();
+            String winner = rs.getString("party_Id");
+            
+            for (party party : parties) {
+                if (party.getID().equals(winner)){
+                    
+                    party.incSeats();
+                    
+                }
+            }
+        }
+        
+        orderParties();
+        
+    }
+    
+    public void orderParties(){
+               
+        for (int i = 0; i < parties.size(); i++) {
+            for (int j = 1; j < (parties.size() - i); j++) {
+             if (parties.get(j - 1).getSeats() < parties.get(j).getSeats()) {
+                party temp = parties.get(j - 1);
+                parties.set(j - 1, parties.get(j));
+                parties.set(j, temp);
+                }
+            }
+        }
+    }   
+    
+    public void allParties() throws SQLException{
         
         String SQL;
         stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
@@ -93,7 +136,7 @@ public class databaseConnect {
         }        
     }
     
-    public void getConstituencies() throws SQLException{
+    public void allConstituencies() throws SQLException{
         
         
         String SQL;

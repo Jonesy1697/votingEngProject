@@ -1,6 +1,7 @@
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
@@ -46,9 +47,9 @@ public class nationalResults extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
+        lblTitle = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblResults = new javax.swing.JTable();
-        lblTitle = new javax.swing.JLabel();
 
         jButton1.setBackground(new java.awt.Color(52, 144, 52));
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
@@ -110,7 +111,10 @@ public class nationalResults extends javax.swing.JFrame {
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
-        tblResults.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        lblTitle.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        lblTitle.setText("National results");
+
+        tblResults.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         tblResults.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -119,45 +123,45 @@ public class nationalResults extends javax.swing.JFrame {
                 "Seats", "Party"
             }
         ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class
+            };
             boolean[] canEdit = new boolean [] {
                 false, false
             };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
         tblResults.setEnabled(false);
-        tblResults.setMaximumSize(new java.awt.Dimension(10, 10));
-        tblResults.setMinimumSize(new java.awt.Dimension(10, 10));
-        tblResults.setPreferredSize(new java.awt.Dimension(30, 64));
         jScrollPane1.setViewportView(tblResults);
-
-        lblTitle.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        lblTitle.setText("National results");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap(80, Short.MAX_VALUE)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(69, 69, 69))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addComponent(lblTitle)
-                        .addGap(108, 108, 108))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblTitle)
+                .addGap(108, 108, 108))
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(64, 64, 64)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(64, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(33, 33, 33)
                 .addComponent(lblTitle)
-                .addGap(26, 26, 26)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(82, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(73, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel4);
@@ -190,11 +194,19 @@ public class nationalResults extends javax.swing.JFrame {
         int count = 0;
 
         try {
-            con.getNationalResults();
+            con.calculategetNationalResults();
+            ArrayList<party> parties = new ArrayList<>();
+            parties = con.getParties();
+                        
+            for (party party : parties) {
+                String[] row = {Integer.toString(party.getSeats()), party.getID()};
+                model.addRow(row);
+            }
+            
         } catch (SQLException ex) {
             Logger.getLogger(nationalResults.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+                       
         tblResults.show();
         
     }

@@ -1,7 +1,5 @@
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
@@ -52,9 +50,9 @@ public class localResults extends javax.swing.JFrame {
         btnSearch = new javax.swing.JButton();
         inConstit = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tblResults = new javax.swing.JTable();
         lblTitle = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tblResults = new javax.swing.JTable();
 
         jButton1.setBackground(new java.awt.Color(52, 144, 52));
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
@@ -159,7 +157,10 @@ public class localResults extends javax.swing.JFrame {
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
-        tblResults.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        lblTitle.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        lblTitle.setText("Local results");
+
+        tblResults.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         tblResults.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -168,23 +169,23 @@ public class localResults extends javax.swing.JFrame {
                 "Votes", "Candidate"
             }
         ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class
+            };
             boolean[] canEdit = new boolean [] {
                 false, false
             };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        tblResults.setToolTipText("");
         tblResults.setEnabled(false);
-        tblResults.setMaximumSize(new java.awt.Dimension(10, 10));
-        tblResults.setMinimumSize(new java.awt.Dimension(10, 10));
-        tblResults.setPreferredSize(new java.awt.Dimension(30, 64));
-        jScrollPane1.setViewportView(tblResults);
-
-        lblTitle.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        lblTitle.setText("Local results");
+        jScrollPane2.setViewportView(tblResults);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -193,20 +194,24 @@ public class localResults extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(44, 44, 44)
                 .addComponent(lblTitle)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(31, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41))
+                .addContainerGap(56, Short.MAX_VALUE))
+            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel4Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(27, Short.MAX_VALUE)))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addComponent(lblTitle)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addContainerGap(274, Short.MAX_VALUE))
+            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel4Layout.createSequentialGroup()
+                    .addGap(56, 56, 56)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(64, Short.MAX_VALUE)))
         );
 
         getContentPane().add(jPanel4);
@@ -237,19 +242,17 @@ public class localResults extends javax.swing.JFrame {
 
         try {
             
-            con.checkConstituency(search);
-            ResultSet rs = con.getRS();
-            
-            
-            if (inConstit.getText().isEmpty()){
+            if (inConstit.getText().isEmpty() || con.checkConstituency(search)){
                 
+                
+               tblResults.hide();
                 
             }
             else{
 
                 con.getLocalResults(search);
 
-                rs = con.getRS();
+                ResultSet rs = con.getRS();
 
                 while (rs.next()){
 
@@ -260,13 +263,15 @@ public class localResults extends javax.swing.JFrame {
 
                     model.addRow(row);
                 }
+                
+            tblResults.show();
+            
             }
         }
         catch (SQLException ex) {
             Logger.getLogger(localResults.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        tblResults.show();
 
     }//GEN-LAST:event_btnSearchActionPerformed
 
@@ -280,7 +285,7 @@ public class localResults extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblTitle;
     private javax.swing.JTable tblResults;
     // End of variables declaration//GEN-END:variables
