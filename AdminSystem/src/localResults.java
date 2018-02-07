@@ -1,6 +1,7 @@
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
@@ -161,10 +162,7 @@ public class localResults extends javax.swing.JFrame {
         tblResults.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         tblResults.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
                 "Votes", "Candidate"
@@ -234,24 +232,34 @@ public class localResults extends javax.swing.JFrame {
         DefaultTableModel model;
         model = (DefaultTableModel) tblResults.getModel();
         model.setRowCount(0);
-        int count = 0;
+        
+        String search = inConstit.getText();
 
         try {
-            con.getLocalResults();
-
+            
+            con.checkConstituency(search);
             ResultSet rs = con.getRS();
+            
+            
+            if (inConstit.getText().isEmpty()){
+                
+                
+            }
+            else{
 
-            while (rs.next()){
+                con.getLocalResults(search);
 
-                int points = rs.getInt("COUNT(`candidate_ID`)");
-                String party = rs.getString("party_Id");
+                rs = con.getRS();
 
-                System.out.println(party + " : " + points);
+                while (rs.next()){
 
-                String[] row = {Integer.toString(points), party};
+                    int points = rs.getInt("COUNT(`candidate_ID`)");
+                    String party = rs.getString("party_Id");
 
-                model.addRow(row);
+                    String[] row = {Integer.toString(points), party};
 
+                    model.addRow(row);
+                }
             }
         }
         catch (SQLException ex) {

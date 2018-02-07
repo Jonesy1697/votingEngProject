@@ -1,3 +1,10 @@
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -16,10 +23,11 @@ public class nationalResults extends javax.swing.JFrame {
      * Creates new form mainMenu
      * @param con
      */
-    public nationalResults(databaseConnect con) {
+    public nationalResults(databaseConnect con){
         
         this.con = con;        
         initComponents(); 
+        loadResults();
         
     }
 
@@ -102,13 +110,10 @@ public class nationalResults extends javax.swing.JFrame {
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
-        tblResults.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        tblResults.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         tblResults.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
                 "Seats", "Party"
@@ -122,6 +127,7 @@ public class nationalResults extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tblResults.setEnabled(false);
         tblResults.setMaximumSize(new java.awt.Dimension(10, 10));
         tblResults.setMinimumSize(new java.awt.Dimension(10, 10));
         tblResults.setPreferredSize(new java.awt.Dimension(30, 64));
@@ -172,6 +178,27 @@ public class nationalResults extends javax.swing.JFrame {
        
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void loadResults(){
+        
+        // Get list of constituencies
+        // Search number of wins by each party
+        // Output to table        
+        
+        DefaultTableModel model;
+        model = (DefaultTableModel) tblResults.getModel();
+        model.setRowCount(0);
+        int count = 0;
+
+        try {
+            con.getNationalResults();
+        } catch (SQLException ex) {
+            Logger.getLogger(nationalResults.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        tblResults.show();
+        
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
