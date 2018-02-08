@@ -1,7 +1,5 @@
-
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
@@ -190,14 +188,14 @@ public class nationalResults extends javax.swing.JFrame {
         
         DefaultTableModel model;
         model = (DefaultTableModel) tblResults.getModel();
-        model.setRowCount(0);
-        int count = 0;
+       
+        int n = 0;
 
         try {
             con.calculategetNationalResults();
             ArrayList<party> parties = new ArrayList<>();
             parties = con.getParties();
-                        
+            
             for (party party : parties) {
                 String[] row = {Integer.toString(party.getSeats()), party.getID()};
                 model.addRow(row);

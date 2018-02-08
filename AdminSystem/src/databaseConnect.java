@@ -89,6 +89,7 @@ public class databaseConnect {
     
     public void calculategetNationalResults() throws SQLException{
         
+        clearLists();
         allParties();
         allConstituencies();
         
@@ -147,5 +148,12 @@ public class databaseConnect {
         while (rs.next()){
             constituencies.add(rs.getString("Id"));
         }
+    }
+    
+    public void clearLists(){
+        
+        parties.removeAll(parties);
+        constituencies.removeAll(constituencies);
+        
     }
 }
