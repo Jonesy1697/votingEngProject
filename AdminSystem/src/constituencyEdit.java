@@ -1,3 +1,10 @@
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -52,7 +59,7 @@ public class constituencyEdit extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         btnSave = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
-        inPartyName = new javax.swing.JTextField();
+        inConstName = new javax.swing.JTextField();
         lblID = new javax.swing.JLabel();
         lblID1 = new javax.swing.JLabel();
         lblTitle = new javax.swing.JLabel();
@@ -152,11 +159,11 @@ public class constituencyEdit extends javax.swing.JFrame {
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
-        inPartyName.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        inPartyName.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        inPartyName.setToolTipText("");
-        inPartyName.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
-        inPartyName.setName("inPartyName"); // NOI18N
+        inConstName.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        inConstName.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        inConstName.setToolTipText("");
+        inConstName.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        inConstName.setName("inConstName"); // NOI18N
 
         lblID.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblID.setText("Constituency");
@@ -181,7 +188,7 @@ public class constituencyEdit extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(lblID)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                .addComponent(inPartyName, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(inConstName, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(39, 39, 39))
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
@@ -195,7 +202,7 @@ public class constituencyEdit extends javax.swing.JFrame {
                 .addComponent(lblTitle)
                 .addGap(40, 40, 40)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(inPartyName, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(inConstName, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(lblID, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -216,6 +223,26 @@ public class constituencyEdit extends javax.swing.JFrame {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
 
+        try {
+            
+            con.allConstituencies();
+            String ID = inConstName.getText();
+            ResultSet rs = con.getRS();
+            
+            rs.moveToInsertRow();
+
+            rs.updateString("ID", ID);
+            rs.insertRow();
+
+            JOptionPane.showMessageDialog(this, ("Record Saved \n\n  ID: " + ID ));
+            
+            this.dispose();
+            new mainMenu(con).setVisible(true);
+        
+        } catch (SQLException ex) {
+            Logger.getLogger(partyEditor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         this.dispose();
         new mainMenu(con).setVisible(true);
         
@@ -231,7 +258,7 @@ public class constituencyEdit extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnSave;
-    private javax.swing.JTextField inPartyName;
+    private javax.swing.JTextField inConstName;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;

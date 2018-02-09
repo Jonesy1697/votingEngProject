@@ -55,7 +55,7 @@ public class databaseConnect {
     
     public void getLocalResults(String constituency) throws SQLException{
         
-        String SQL;
+        String SQL;        
         
         stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
         SQL = "SELECT candidate.`party_Id`, COUNT(`candidate_ID`)\n" +
@@ -68,7 +68,7 @@ public class databaseConnect {
     
     public boolean checkConstituency(String constituency) throws SQLException{
         
-        String SQL;
+       String SQL;
         constituency = "\"" + constituency + "\"";
         
         stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
@@ -83,7 +83,15 @@ public class databaseConnect {
             
         }
         
-        return count == 0;
+        stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+        SQL = "SELECT COUNT(vote.`Id`) \n" +
+                "FROM vote INNER JOIN candidate on candidate.Id = candidate_ID\n" +
+                "where candidate.constituency_Id = " + constituency;
+                
+        rs = stmt.executeQuery(SQL);
+        rs.next();
+                
+        return (count != 0 && rs.getInt("COUNT(vote.`Id`)") != 0);
         
     }
     
@@ -94,15 +102,17 @@ public class databaseConnect {
         allConstituencies();
         
         for (String item : constituencies) {
-            getLocalResults(item);
-            rs.next();
-            String winner = rs.getString("party_Id");
-            
-            for (party party : parties) {
-                if (party.getID().equals(winner)){
-                    
-                    party.incSeats();
-                    
+            if (checkConstituency(item)){
+                getLocalResults(item);
+                rs.next();
+                String winner = rs.getString("party_Id");
+
+                for (party party : parties) {
+                    if (party.getID().equals(winner)){
+
+                        party.incSeats();
+
+                    }
                 }
             }
         }

@@ -1,3 +1,10 @@
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -198,8 +205,26 @@ public class partyEditor extends javax.swing.JFrame {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
 
-        this.dispose();
-        new mainMenu(con).setVisible(true);
+        
+        try {
+            
+            con.allParties();
+            String ID = inPartyName.getText();
+            ResultSet rs = con.getRS();
+            
+            rs.moveToInsertRow();
+
+            rs.updateString("ID", ID);
+            rs.insertRow();
+
+            JOptionPane.showMessageDialog(this, ("Record Saved \n\n  ID: " + ID ));
+            
+            this.dispose();
+            new mainMenu(con).setVisible(true);
+        
+        } catch (SQLException ex) {
+            Logger.getLogger(partyEditor.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }//GEN-LAST:event_btnSaveActionPerformed
 
