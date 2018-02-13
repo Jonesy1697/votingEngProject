@@ -241,11 +241,10 @@ public class localResults extends javax.swing.JFrame {
         String search = inConstit.getText();
 
         try {
-            
-            if (inConstit.getText().isEmpty() || con.checkConstituency(search)){
+                        
+            if (inConstit.getText().isEmpty() || !con.checkConstituency(search)){
                 
-                
-               tblResults.hide();
+                tblResults.hide();
                 
             }
             else{

@@ -4,8 +4,12 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -55,7 +59,7 @@ public class databaseConnect {
     
     public void getLocalResults(String constituency) throws SQLException{
         
-        String SQL;        
+        String SQL;    
         
         stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
         SQL = "SELECT candidate.`party_Id`, COUNT(`candidate_ID`)\n" +
@@ -66,9 +70,32 @@ public class databaseConnect {
         rs = stmt.executeQuery(SQL);
     }    
     
+    public boolean checkUser(String ID, String pass, Date DOB) throws SQLException{
+        
+        String SQL;
+        stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+        SQL = "SELECT ID, password, DOB FROM administrator where Id = " + ID;
+        rs = stmt.executeQuery(SQL);
+        
+        SimpleDateFormat sdf = new SimpleDateFormat ("yyyy-MM-dd");        
+        
+        while (rs.next()) {
+            if (rs.getString("ID").equals(ID)) {
+                if (rs.getString("password").equals(pass)) {
+                    if ( sdf.format(rs.getDate("DOB")).equals(sdf.format(DOB))){
+                        return true;
+                    }    
+                }
+            }
+        }
+        
+        return false;
+        
+    }
+    
     public boolean checkConstituency(String constituency) throws SQLException{
         
-       String SQL;
+        String SQL;
         constituency = "\"" + constituency + "\"";
         
         stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
