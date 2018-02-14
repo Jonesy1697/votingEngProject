@@ -2,6 +2,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 
@@ -244,6 +245,7 @@ public class localResults extends javax.swing.JFrame {
                         
             if (inConstit.getText().isEmpty() || !con.checkConstituency(search)){
                 
+                JOptionPane.showMessageDialog(this, ("Constituency could not be found."));
                 tblResults.hide();
                 
             }

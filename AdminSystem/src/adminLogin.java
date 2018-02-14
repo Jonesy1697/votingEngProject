@@ -235,7 +235,7 @@ public class adminLogin extends javax.swing.JFrame {
         String pass = inPassword.getText();
         Date DOB = inDOB.getDate();
         
-        if (ID != null && pass != null && DOB != null){
+        if (!inID.getText().trim().isEmpty() && !inPassword.getText().trim().isEmpty() && DOB != null){
             try { 
                 if (!con.checkElectionDate()){
 

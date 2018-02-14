@@ -181,6 +181,25 @@ public class databaseConnect {
         }
     }   
     
+    public boolean partyExists(String party) throws SQLException{
+        
+        allParties();
+        
+        rs.first();        
+        
+        do{
+            
+            if (rs.getString("Id").equals(party)){
+                
+                return true;
+                
+            }            
+        } while (rs.next());
+        
+        return false;
+        
+    }
+    
     public void allParties() throws SQLException{
         
         String SQL;

@@ -208,19 +208,35 @@ public class partyEditor extends javax.swing.JFrame {
         
         try {
             
-            con.allParties();
             String ID = inPartyName.getText();
-            ResultSet rs = con.getRS();
-            
-            rs.moveToInsertRow();
+                            
+            if (inPartyName.getText().trim().isEmpty()){
+                
+                JOptionPane.showMessageDialog(this, ("No values entered."));
+                
+            }else{
+                
+                if (!con.partyExists(ID)){
 
-            rs.updateString("ID", ID);
-            rs.insertRow();
+                    con.allParties();
+                    ResultSet rs = con.getRS();
+                    rs.moveToInsertRow();
 
-            JOptionPane.showMessageDialog(this, ("Record Saved \n\n  ID: " + ID ));
-            
-            this.dispose();
-            new mainMenu(con).setVisible(true);
+                    rs.updateString("ID", ID);
+                    rs.insertRow();
+
+                    JOptionPane.showMessageDialog(this, ("Record Saved \n\n  ID: " + ID ));
+
+                    this.dispose();
+                    new mainMenu(con).setVisible(true);
+
+                }else{
+
+                    JOptionPane.showMessageDialog(this, ("Party already exists."));
+
+                }
+                
+            }
         
         } catch (SQLException ex) {
             Logger.getLogger(partyEditor.class.getName()).log(Level.SEVERE, null, ex);
