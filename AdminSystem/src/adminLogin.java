@@ -6,6 +6,7 @@ import java.time.temporal.TemporalAccessor;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -168,10 +169,10 @@ public class adminLogin extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(lblPassword1)
                         .addGap(104, 104, 104))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(84, 84, 84)
                 .addComponent(btnLogin)
-                .addGap(84, 84, 84))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -188,9 +189,9 @@ public class adminLogin extends javax.swing.JFrame {
                 .addComponent(lblPassword1, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(inDOB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         lblTitle.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -234,14 +235,41 @@ public class adminLogin extends javax.swing.JFrame {
         String pass = inPassword.getText();
         Date DOB = inDOB.getDate();
         
-        try { 
-            con.checkUser(ID, pass, DOB);
-        } catch (SQLException ex) {
-            Logger.getLogger(adminLogin.class.getName()).log(Level.SEVERE, null, ex);
+        if (ID != null && pass != null && DOB != null){
+            try { 
+                if (!con.checkElectionDate()){
+
+                    if (con.checkUser(ID, pass, DOB)){
+
+                        this.dispose();
+                        new mainMenu(con).setVisible(true);        
+
+                    }
+                    else{
+
+                        JOptionPane.showMessageDialog(this, "Incorrect login");
+
+                    }
+                }
+                else{
+                
+                    JOptionPane.showMessageDialog(this, "Election in progress");
+                    
+                }
+            } catch (SQLException ex) {
+              
+                Logger.getLogger(adminLogin.class.getName()).log(Level.SEVERE, null, ex);
+            
+            }   
+        }
+        else{
+            
+            JOptionPane.showMessageDialog(this, "Please complete all entries");
+        
         }
         
-        this.dispose();
-        new mainMenu(con).setVisible(true);        
+        // this.dispose();
+        // new mainMenu(con).setVisible(true); 
         
     }//GEN-LAST:event_btnLoginActionPerformed
 
@@ -273,13 +301,11 @@ public class adminLogin extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    new adminLogin().setVisible(true);
-                } catch (SQLException ex) {
-                    Logger.getLogger(adminLogin.class.getName()).log(Level.SEVERE, null, ex);
-                }
+        java.awt.EventQueue.invokeLater(() -> {
+            try {
+                new adminLogin().setVisible(true);
+            } catch (SQLException ex) {
+                Logger.getLogger(adminLogin.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
     }

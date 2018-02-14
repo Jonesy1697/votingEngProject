@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -32,7 +33,7 @@ public class databaseConnect {
     party party;
     ArrayList<party> parties = new ArrayList<>();
     ArrayList<String> constituencies = new ArrayList<>();
-    
+    SimpleDateFormat sdf = new SimpleDateFormat ("yyyy-MM-dd");   
     
     public databaseConnect() throws SQLException {
             
@@ -57,6 +58,27 @@ public class databaseConnect {
         
     }
     
+    public boolean checkElectionDate() throws SQLException{
+        
+        String SQL;    
+        
+        stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+        SQL = "SELECT `electionDate` FROM `election` order by `electionDate` DESC;";
+        rs = stmt.executeQuery(SQL);
+        
+        rs.first();
+        
+        Date now = new Date();
+        
+        if (sdf.format(now).equals(rs.getDate("electionDate"))){
+            return true;
+        }
+        else{
+            return false;
+        }
+        
+    }
+    
     public void getLocalResults(String constituency) throws SQLException{
         
         String SQL;    
@@ -75,9 +97,7 @@ public class databaseConnect {
         String SQL;
         stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
         SQL = "SELECT ID, password, DOB FROM administrator where Id = " + ID;
-        rs = stmt.executeQuery(SQL);
-        
-        SimpleDateFormat sdf = new SimpleDateFormat ("yyyy-MM-dd");        
+        rs = stmt.executeQuery(SQL);     
         
         while (rs.next()) {
             if (rs.getString("ID").equals(ID)) {
