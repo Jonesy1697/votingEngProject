@@ -8,9 +8,6 @@ import java.util.ArrayList;
 import java.util.Date;
 
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
  */
 
 /**
@@ -30,6 +27,10 @@ public class databaseConnect {
     ArrayList<String> constituencies = new ArrayList<>();
     SimpleDateFormat sdf = new SimpleDateFormat ("yyyy-MM-dd");   
     
+    /**
+     *
+     * @throws SQLException
+     */
     public databaseConnect() throws SQLException {
             
         
@@ -41,18 +42,31 @@ public class databaseConnect {
         
     }   
     
+    /**
+     *
+     * @return result set currently stored in connection
+     */
     public ResultSet getRS() {
         
         return rs;
 
     }
     
+    /**
+     *
+     * @return arraylist parties currently stored in connection
+     */
     public ArrayList<party> getParties(){
                
         return parties;
         
     }
     
+    /**
+     *
+     * @return whether the current date is equal to the election stored in the database
+     * @throws SQLException
+     */
     public boolean checkElectionDate() throws SQLException{
         
         String SQL;    
@@ -65,15 +79,15 @@ public class databaseConnect {
         
         Date now = new Date();
         
-        if (sdf.format(now).equals(rs.getDate("electionDate"))){
-            return true;
-        }
-        else{
-            return false;
-        }
+        return sdf.format(now).equals(rs.getDate("electionDate"));
         
     }
     
+    /**
+     *
+     * @param constituency parses the desired constituency to search results with
+     * @throws SQLException
+     */
     public void getLocalResults(String constituency) throws SQLException{
         
         String SQL;    
@@ -87,6 +101,14 @@ public class databaseConnect {
         rs = stmt.executeQuery(SQL);
     }    
     
+    /**
+     *
+     * @param ID stores entered ID
+     * @param pass stores entered password
+     * @param DOB stores entered DOB
+     * @return the result of if the password and DOB match the given ID
+     * @throws SQLException
+     */
     public boolean checkUser(String ID, String pass, Date DOB) throws SQLException{
         
         String SQL;
@@ -108,6 +130,12 @@ public class databaseConnect {
         
     }
     
+    /**
+     *
+     * @param constituency stored the entered constituency to be searched
+     * @return whether the constituency can be found and has any votes on the database
+     * @throws SQLException
+     */
     public boolean checkConstituency(String constituency) throws SQLException{
         
         String SQL;
@@ -137,6 +165,10 @@ public class databaseConnect {
         
     }
     
+    /**
+     *
+     * @throws SQLException
+     */
     public void calculategetNationalResults() throws SQLException{
         
         clearLists();
@@ -163,6 +195,9 @@ public class databaseConnect {
         
     }
     
+    /**
+     *
+     */
     public void orderParties(){
                
         for (int i = 0; i < parties.size(); i++) {
@@ -176,6 +211,12 @@ public class databaseConnect {
         }
     }   
     
+    /**
+     *
+     * @param party stores the party to be searched on the database
+     * @return whether the party can be found on the database
+     * @throws SQLException
+     */
     public boolean partyExists(String party) throws SQLException{
         
         allParties();
@@ -195,6 +236,35 @@ public class databaseConnect {
         
     }
     
+    /**
+     *
+     * @param constituency stores the constituency to be searched on the database
+     * @return whether the constituency can be found on the database 
+     * @throws SQLException
+     */
+    public boolean constituencyExists(String constituency) throws SQLException{
+        
+        allConstituencies();
+        
+        rs.first();        
+        
+        do{
+            
+            if (rs.getString("Id").equals(constituency)){
+                
+                return true;
+                
+            }            
+        } while (rs.next());
+        
+        return false;
+        
+    }
+    
+    /**
+     *
+     * @throws SQLException
+     */
     public void allParties() throws SQLException{
         
         String SQL;
@@ -208,6 +278,10 @@ public class databaseConnect {
         }        
     }
     
+    /**
+     *
+     * @throws SQLException
+     */
     public void allConstituencies() throws SQLException{
         
         
@@ -221,6 +295,9 @@ public class databaseConnect {
         }
     }
     
+    /**
+     *
+     */
     public void clearLists(){
         
         parties.removeAll(parties);

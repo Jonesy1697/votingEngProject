@@ -22,7 +22,7 @@ public class localResults extends javax.swing.JFrame {
     
     /**
      * Creates new form mainMenu
-     * @param con
+     * @param con parses connection to the database
      */
     public localResults(databaseConnect con) {
         

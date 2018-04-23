@@ -21,7 +21,7 @@ public class partyEditor extends javax.swing.JFrame {
     
     /**
      * Creates new form mainMenu
-     * @param con
+     * @param con parses database connection
      */
     public partyEditor(databaseConnect con) {
         
@@ -30,9 +30,14 @@ public class partyEditor extends javax.swing.JFrame {
         
     }
     
-     public partyEditor(databaseConnect tempConnection, String partyID) {
+    /**
+     *
+     * @param con parses database connection
+     * @param partyID parses party which will be edited
+     */
+    public partyEditor(databaseConnect con, String partyID) {
         
-        con = tempConnection;
+        this.con = con;
         initComponents();      
         
     }

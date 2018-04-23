@@ -14,16 +14,9 @@ public class searchParty extends javax.swing.JFrame {
     
     /**
      * Creates new form mainMenu
-     * @param con
+     * @param con parses connection to database
      */
     public searchParty(databaseConnect con) {
-        
-        this.con = con;
-        initComponents();      
-        
-    }
-    
-     public searchParty(databaseConnect con, String partyID) {
         
         this.con = con;
         initComponents();      

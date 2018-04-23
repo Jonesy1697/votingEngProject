@@ -13,6 +13,10 @@ public class party {
     String Id;
     Integer seats;
     
+    /**
+     *
+     * @param temp stores the party ID to be created
+     */
     public party(String temp){
         
         Id = temp;
@@ -20,18 +24,29 @@ public class party {
         
     }
     
+    /**
+     *
+     * @return the ID of the party
+     */
     public String getID(){
         
         return Id;
         
     }
     
+    /**
+     *
+     * @return the number of seat a party has collected
+     */
     public Integer getSeats(){
         
         return seats;
     
     }    
     
+    /**
+     *
+     */
     public void incSeats(){
         
         seats++;

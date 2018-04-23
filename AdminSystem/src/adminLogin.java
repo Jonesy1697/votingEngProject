@@ -30,7 +30,12 @@ public class adminLogin extends javax.swing.JFrame {
         
     }
 
-     public adminLogin(databaseConnect con) throws SQLException {
+    /**
+     *
+     * @param con
+     * @throws SQLException
+     */
+    public adminLogin(databaseConnect con) throws SQLException {
     
         this.con = con;
         initComponents();

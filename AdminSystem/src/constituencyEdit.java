@@ -20,7 +20,7 @@ public class constituencyEdit extends javax.swing.JFrame {
     
     /**
      * Creates new form mainMenu
-     * @param con
+     * @param con parses connection to database
      */
     public constituencyEdit(databaseConnect con) {
         
@@ -31,10 +31,10 @@ public class constituencyEdit extends javax.swing.JFrame {
     
     /**
      *
-     * @param con
-     * @param partyID
+     * @param con parses connection to database
+     * @param constituencyID parses constituency to be edited
      */
-    public constituencyEdit(databaseConnect con, String partyID) {
+    public constituencyEdit(databaseConnect con, String constituencyID) {
         
         this.con = con;
         initComponents();      
@@ -224,26 +224,39 @@ public class constituencyEdit extends javax.swing.JFrame {
 
         try {
             
-            con.allConstituencies();
             String ID = inConstName.getText();
-            ResultSet rs = con.getRS();
-            
-            rs.moveToInsertRow();
+                            
+            if (inConstName.getText().trim().isEmpty()){
+                
+                JOptionPane.showMessageDialog(this, ("No values entered."));
+                
+            }else{
+                
+                if (!con.constituencyExists(ID)){
 
-            rs.updateString("ID", ID);
-            rs.insertRow();
+                    con.allConstituencies();
+                    ResultSet rs = con.getRS();
+                    rs.moveToInsertRow();
 
-            JOptionPane.showMessageDialog(this, ("Record Saved \n\n  ID: " + ID ));
-            
-            this.dispose();
-            new mainMenu(con).setVisible(true);
+                    rs.updateString("ID", ID);
+                    rs.insertRow();
+
+                    JOptionPane.showMessageDialog(this, ("Record Saved \n\n  ID: " + ID ));
+
+                    this.dispose();
+                    new mainMenu(con).setVisible(true);
+
+                }else{
+
+                    JOptionPane.showMessageDialog(this, ("Constituency already exists."));
+
+                }
+                
+            }
         
         } catch (SQLException ex) {
             Logger.getLogger(partyEditor.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        this.dispose();
-        new mainMenu(con).setVisible(true);
         
     }//GEN-LAST:event_btnSaveActionPerformed
 

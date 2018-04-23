@@ -14,16 +14,9 @@ public class searchConstituency extends javax.swing.JFrame {
     
     /**
      * Creates new form mainMenu
-     * @param con
+     * @param con parses connection to database
      */
     public searchConstituency(databaseConnect con) {
-        
-        this.con = con;
-        initComponents();      
-        
-    }
-    
-     public searchConstituency(databaseConnect con, String partyID) {
         
         this.con = con;
         initComponents();      

@@ -20,7 +20,7 @@ public class nationalResults extends javax.swing.JFrame {
     
     /**
      * Creates new form mainMenu
-     * @param con
+     * @param con parses connection to the database
      */
     public nationalResults(databaseConnect con){
         
