@@ -8,19 +8,20 @@ to vote in an election.
 ## Getting Started
 
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+These instructions will get you a copy of the project up and running on your
+local machine for development and testing purposes. See deployment for notes 
+on how to deploy the project on a live system.
 
 
+The program will require a virtual server, such as XAMPP, which will host the
+database used in the systems.
 
 ### Prerequisites
 
 
-What things you need to install the software and how to install them
-
-
-```
-Give examples
-```
+To run the program, an appropriate web server, such as XAMPP, to host the database 
+needed for the systems to work. Once downloaded, copy and paste the SQL code
+onto the virtual server, so to set up the database the systems will use.
 
 
 
