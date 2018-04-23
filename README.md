@@ -19,10 +19,12 @@ database used in the systems.
 ### Prerequisites
 
 
-To run the program, an appropriate web server, such as XAMPP, to host the database 
-needed for the systems to work. Once downloaded, copy and paste the SQL code
-onto the virtual server, so to set up the database the systems will use.
-
+To run the program, an appropriate web server, such as XAMPP, to host the
+database needed for the systems to work. Once downloaded, copy and paste
+the SQL code onto the virtual server, so to set up the database the systems
+will use.
+ Finally, copy and paste the system website into the web server
+folder, so that the website can be hosted from a private computer.
 
 
 ### Installing
@@ -32,13 +34,15 @@ Before starting, download a web server, as specificed in prerequisites. Once
 downloaded, enter the SQL code in the project, which will create the database to
 be used. When this SQL has been run, test the database to ensure SQL was successful,
 collecting users from the database, with the following line
+```Select * from voter
 ```
-Select * from voter
-```
 
 
 
-
+Once the database has been successfully installed, the voting website should be
+accessible through the local host, provided it has been correctly placed. At this
+point, no votes should have been placed, so the user should be able to log in as
+any voter with the correct ID and password.
 
 
 
@@ -46,8 +50,21 @@ Select * from voter
 ## Running the tests
 
 
-Explain how to run the automated tests for this system
+To test the voting system, enter the correct user details, ID and password, when on
+the main login page of the voting system. This will redirect a user to submit a vote,
+and once the vote has been submitted, will display who was voted for in the database.
+```
 
+UserID = AC-71
+Password = 1234
+```
+
+
+
+
+To test the administration system, open the compiled Java program, and enter the
+administrator details. This will then direct the user to the main menu, where results
+can be viewed.
 
 
 ### Break down into end to end tests
