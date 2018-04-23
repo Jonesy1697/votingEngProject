@@ -28,26 +28,14 @@ onto the virtual server, so to set up the database the systems will use.
 ### Installing
 
 
-A step by step series of examples that tell you have to get a development env running
+Before starting, download a web server, as specificed in prerequisites. Once
+downloaded, enter the SQL code in the project, which will create the database to
+be used. When this SQL has been run, test the database to ensure SQL was successful,
+collecting users from the database, with the following line:
 
-
-Say what the step will be
-
-
-```
-Give the example
+```Select * from voter
 ```
 
-
-And repeat
-
-
-```
-until finished
-```
-
-
-End with an example of getting some data out of the system or using it for a little demo
 
 
 
@@ -64,9 +52,6 @@ Explain how to run the automated tests for this system
 Explain what these tests test and why
 
 
-```
-Give an example
-```
 
 
 
