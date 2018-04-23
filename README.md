@@ -72,76 +72,20 @@ Password = password123
 DOB = 13/06/1985
 ```
 
-### Break down into end to end tests
-
-
-Explain what these tests test and why
-
-
-
-
-
-### And coding style tests
-
-
-Explain what these tests test and why
-
-
-
 ## Deployment
 
 
-Add additional notes about how to deploy this on a live system
-
-
+To deploy this system as a public domain, a public server will need to be implemented,
+such as through a raspberry pi and public IP address.
 
 ## Built With
 
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-
-* [Maven](https://maven.apache.org/) - Dependency Management
-
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
-
-## Contributing
-
-
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-
-
-## Versioning
-
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
-
-
+* [XAMPP](https://www.apachefriends.org/index.html) - The virtual server
+* [Netbeans](https://maven.apache.org/) - The Java environment
+* [Notepad++](https://notepad-plus-plus.org/) - The web environment
 
 ## Authors
 
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
-
-
-
-## License
-
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-
-## Acknowledgments
-
-
-* Hat tip to anyone who's code was used
-
-* Inspiration
-
-* etc
-
+* **Christopher Jones** 
