@@ -57,15 +57,20 @@ and once the vote has been submitted, will display who was voted for in the data
 ```
 UserID = AC-71
 Password = 1234
+DOB = 13/06/1985
 ```
-
-
 
 
 To test the administration system, open the compiled Java program, and enter the
 administrator details. This will then direct the user to the main menu, where results
 can be viewed.
 
+
+```
+UserID = 1
+Password = password123
+DOB = 13/06/1985
+```
 
 ### Break down into end to end tests
 
