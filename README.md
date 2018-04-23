@@ -1,9 +1,9 @@
-# Project Title
-
-
-One Paragraph of project description goes here
-
-
+# votingEngProject
+This project aims to demonstrate the methods and technologies available to
+implement e-voting within the United Kingdom general elections. This will
+consist of two seperate systems, one programmed in Java to handle election
+administration, and another system using HTML, CSS and PHP to allow a person
+to vote in an election.
 
 ## Getting Started
 
