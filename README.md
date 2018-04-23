@@ -33,12 +33,10 @@ downloaded, enter the SQL code in the project, which will create the database to
 be used. When this SQL has been run, test the database to ensure SQL was successful,
 collecting users from the database, with the following line
 ```
-Give an example
+Select * from voter
 ```
 
 
-```Select * from voter
-```
 
 
 
