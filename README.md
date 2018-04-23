@@ -34,8 +34,8 @@ Before starting, download a web server, as specificed in prerequisites. Once
 downloaded, enter the SQL code in the project, which will create the database to
 be used. When this SQL has been run, test the database to ensure SQL was successful,
 collecting users from the database, with the following line
-```Select * from voter
-
+```
+Select * from voter
 ```
 
 
