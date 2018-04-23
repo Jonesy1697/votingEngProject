@@ -35,6 +35,7 @@ downloaded, enter the SQL code in the project, which will create the database to
 be used. When this SQL has been run, test the database to ensure SQL was successful,
 collecting users from the database, with the following line
 ```Select * from voter
+
 ```
 
 
@@ -54,7 +55,6 @@ To test the voting system, enter the correct user details, ID and password, when
 the main login page of the voting system. This will redirect a user to submit a vote,
 and once the vote has been submitted, will display who was voted for in the database.
 ```
-
 UserID = AC-71
 Password = 1234
 ```
