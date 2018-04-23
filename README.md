@@ -36,6 +36,8 @@ collecting users from the database, with the following line:
 ```Select * from voter
 ```
 
+
+
 
 
 
