@@ -8,12 +8,6 @@ The program requires a virtual server, such as XAMPP, to host the database used 
 
 Links for all software suggest can be found in the Built With chapter of the readme.
 
-### Prerequisites
-To run the program, an appropriate web server, such as XAMPP, to host the database needed for the systems to work. Once downloaded, execute the SQL code on the virtual server, so to set up the database the systems will use.
-
-Finally, save the system website into the default server folder on the virutal, so that the website can be hosted from a private computer.
-
-### Installing
 Firstly, ensuring that all source code has been downloaded, so that it can be executed in later steps.
 
 Before starting the system, download a web server, as specificed in prerequisites. Once downloaded, enter the SQL code in the project, which will create the database to be used. When this SQL has been run, test the database to ensure SQL was successful, collecting users from the database, with the following line:
@@ -37,7 +31,7 @@ Password = password123
 DOB = 13/06/1985
 ```
 ## Deployment
-To deploy this system as a public domain, a public server will need to be implemented, such as through a raspberry pi and public IP address.
+To deploy this system as a public domain, a public server will need to be implemented, such as through a raspberry pi and public IP address. More information on how to do this can be found online, alongside several tutorials.
 
 ## Built With
 * [XAMPP](https://www.apachefriends.org/index.html) - The virtual server
@@ -46,3 +40,9 @@ To deploy this system as a public domain, a public server will need to be implem
 
 ## Authors
 ***Christopher Jones*** 
+### Prerequisites
+To run the program, an appropriate web server, such as XAMPP, to host the database needed for the systems to work. Once downloaded, execute the SQL code on the virtual server, so to set up the database the systems will use.
+
+Finally, save the system website into the default server folder on the virutal, so that the website can be hosted from a private computer.
+
+### Installing
