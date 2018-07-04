@@ -1,20 +1,22 @@
 # votingEngProject
-This project aims to demonstrate the methods and technologies available to implement e-voting within the United Kingdom general elections. This will consist of two seperate systems, one programmed in Java to handle election administration, and another system using HTML, CSS and PHP to allow a person to vote in an election.
+This project aims to demonstrate the methods and technologies available to implement e-voting within the United Kingdom general elections. This will consist of two seperate systems, one programmed in Java to handle election administration, and another system programmed in HTML, CSS and PHP to allow a person to vote in an election online. The two systems will be used seperately, and when one is active, the other cannot be used to disallow administration editting to databases during an election, and to disallow voting when administrative repairs are being made.
 
 ## Getting Started
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+These instructions will walk through the download of the project and running on a local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
-The program will require a virtual server, such as XAMPP, which will host the database used in the systems. The program may also require a Java editor, such as Netbeans, and a text editor for HTML, CSS and PHP, such as Notepad++.
+The program requires a virtual server, such as XAMPP, to host the database used in the systems, as well as to host the webpage which enables a voter to submit a vote. The program may also require a Java editor, such as Netbeans, and a text editor for HTML, CSS and PHP, such as Notepad++, should a developer wish to make changes to the source code. If changes are made, ensure that code is recompiled and that the edited websites are stored on the hosting folder in the virtual server.
 
-Links for all software suggest can be found in the "Built With" chapter of the readme.
+Links for all software suggest can be found in the Built With chapter of the readme.
 
 ### Prerequisites
-To run the program, an appropriate web server, such as XAMPP, to host the database needed for the systems to work. Once downloaded, copy and paste the SQL code onto the virtual server, so to set up the database the systems will use.
+To run the program, an appropriate web server, such as XAMPP, to host the database needed for the systems to work. Once downloaded, execute the SQL code on the virtual server, so to set up the database the systems will use.
 
-Finally, copy and paste the system website into the web server folder, so that the website can be hosted from a private computer.
+Finally, save the system website into the default server folder on the virutal, so that the website can be hosted from a private computer.
 
 ### Installing
-Before starting, download a web server, as specificed in prerequisites. Once downloaded, enter the SQL code in the project, which will create the database to be used. When this SQL has been run, test the database to ensure SQL was successful, collecting users from the database, with the following line:
+Firstly, ensuring that all source code has been downloaded, so that it can be executed in later steps.
+
+Before starting the system, download a web server, as specificed in prerequisites. Once downloaded, enter the SQL code in the project, which will create the database to be used. When this SQL has been run, test the database to ensure SQL was successful, collecting users from the database, with the following line:
 ```
 Select * from voter
 ```
